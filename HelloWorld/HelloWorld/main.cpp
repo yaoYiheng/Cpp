@@ -116,20 +116,25 @@ int & getAA()
     static int a = 10;
     return a;
 }
-int main(int argc, const char * argv[]) {
+
+/**
+ 清屏, 之前的测试代码
+ */
+void Learn()
+{
     // insert code here...
     
-//    test1();
+    //    test1();
     
     //引用所占用的大小, 跟指针是相等的
     cout << "sizeof(TypeA) = " << sizeof(typeA) << endl;
     cout << "sizeof(TypeA) = " << sizeof(typeB) << endl;
     
-//    int a = 10;
-//    int &ref = a; //常量需要初始化, 引用也要初始化, ->引用可能是一个常量(常指针)
-//
-//    int *const p = &a;
-
+    //    int a = 10;
+    //    int &ref = a; //常量需要初始化, 引用也要初始化, ->引用可能是一个常量(常指针)
+    //
+    //    int *const p = &a;
+    
     int main_a = 0;
     
     main_a = getA();
@@ -151,5 +156,106 @@ int main(int argc, const char * argv[]) {
     //引用如果当函数返回值的话, 函数可以当左值.
     getAA() = 1000;
     cout << "getAA() = " << getAA() << endl;
+}
+
+namespace Pointer {
+    //指向结构体引用的别名.
+    int get_mem1(struct Student *& stu)
+    {
+        stu = (struct Student *)malloc(sizeof(struct Student));
+        if (stu == NULL) {
+            return -1;
+        }
+        stu->id = 200;
+        strcpy(stu->name, "Wangwu");
+        
+        return 0;
+    }
+    
+    /**
+     传入二级指针, 分配结构体并返回
+
+     @param stu <#stu description#>
+     @return <#return value description#>
+     */
+    int get_mem(struct Student **stu)
+    {
+        //声明一个指向结构体的指针, 并初始化..
+        struct Student *st = NULL;
+        //在堆中为该结构体分配内存, 并让指针指向这片内存
+        st =(struct Student *) malloc(sizeof(struct Student));
+        
+        //如果内存分配不成功吗返回-1
+        if(st == NULL)
+        {
+            return -1;
+        }
+        
+        //通过指针操作赋值
+        st->id = 100;
+        strcpy(st->name, "zhangsan");
+        
+        //赋值
+        *stu = st;
+        
+        return 0;
+        
+    }
+    /**
+     通过引用来进行内存释放
+
+     @param stu 结构体指针的引用
+     */
+    void free_men1(struct Student* &stu)
+    {
+        if (stu != NULL) {
+            free(stu);
+            stu = NULL;
+        }
+        
+        
+    }
+    
+    /**
+     二级指针释放内存
+
+     @param stu 指向结构体指针的指针
+     */
+    void free_men(struct Student **stu)
+    {
+        if (stu == NULL) {
+            return;
+        }
+        
+        struct Student *st = *stu;
+        if (st != NULL) {
+            free(st);
+            *stu = NULL;
+        }
+    }
+    void pointerTest1()
+    {
+        struct Student *s = NULL;
+        
+        get_mem(&s);
+        
+        cout << "id = " << s->id << "name = " << s->name <<endl;
+        
+        free(s);
+        
+        cout << "--------------------------"<<endl;
+        
+        get_mem1(s);
+        cout << "id = " << s->id << "name = " << s->name <<endl;
+        free_men1(s);
+    }
+}
+using namespace Pointer;
+int main(int argc, const char * argv[]) {
+    
+
+
     return 0;
 }
+
+
