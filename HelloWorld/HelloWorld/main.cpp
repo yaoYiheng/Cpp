@@ -8,7 +8,20 @@
 
 #include <iostream>
 using namespace std;
+struct Student
+{
+    int id;
+    char name[64];
+};
 
+struct typeA
+{
+    int &a;
+};
+struct typeB
+{
+    int *a;
+};
 /**
  引用的规则:
  1. 引用没有定义, 是一种关系型声明. 声明它和原有某一变量(实体)的关系.
@@ -29,9 +42,114 @@ void test1()
     
     cout << "a = " <<a<<endl;
 }
+
+
+/**
+ 通过引用来改变值
+ */
+void valueChange(int & ref)
+{
+    ref = 30;
+}
+
+
+/**
+ 值拷贝, 因为结构体是能完全赋值的, 有内存拷贝的动作
+不建议这样写, 因为内存消耗很大当结构体内容很多时
+ @param s1 传入的结构体, 拷贝整个结构体
+ */
+void my_printf(struct Student s1)
+{
+    cout << "id = " << s1.id <<  " " << " name = "<<s1.name << endl;
+}
+
+/**
+ 比上一种方式好, 不涉及结构体的拷贝, 只是地址的赋值
+
+ @param s1 结构体的地址
+ */
+void my_printf1(struct Student *s1)
+{
+    cout << "id = " << s1->id <<  " " << " name = "<<s1->name << endl;
+}
+
+
+/**
+ 传递引用, 通过.访问结构体的成员,更易操作
+
+ @param s1 结构体的引用, 对别名的赋值
+ */
+void my_printf2(struct Student &s1)
+{
+    cout << "id = " << s1.id <<  " " << " name = "<<s1.name << endl;
+}
+
+/**
+ 相当于是将Main函数中的a取地址
+ int *const a = main::&a
+
+ @param a 常指针
+ */
+void motify(int *const a)
+{
+    *a = 100;
+}
+
+/**
+ 当我们将引用作为函数参数传递的时候, 编译器会替我们将实参取地址给引用
+ int &a = main:: &a
+
+ */
+void motify2(int &a)
+{
+    a = 100;//对一个引用操作 赋值的时候, 编译器替我们隐藏了*操作
+}
+//引用作为返回值, 不要返回局部变量的引用
+int& getA()
+{
+    int a = 10;
+    
+    return a;
+}
+int & getAA()
+{
+    static int a = 10;
+    return a;
+}
 int main(int argc, const char * argv[]) {
     // insert code here...
     
-    test1();
+//    test1();
+    
+    //引用所占用的大小, 跟指针是相等的
+    cout << "sizeof(TypeA) = " << sizeof(typeA) << endl;
+    cout << "sizeof(TypeA) = " << sizeof(typeB) << endl;
+    
+//    int a = 10;
+//    int &ref = a; //常量需要初始化, 引用也要初始化, ->引用可能是一个常量(常指针)
+//
+//    int *const p = &a;
+
+    int main_a = 0;
+    
+    main_a = getA();
+    cout << "main_a = " << main_a <<endl;
+#if 0
+    int& main_a_re = getA();//这里相当于将局部变量里的a传入出来, 该引用指向一个已经出栈的变量, 打印错误值
+    
+    cout << "main_a_re  = " << main_a_re <<endl;
+    
+    getA() = 100;
+    
+    cout << "getA = " << getA()<< endl;
+#endif
+    
+    int main_a_re = getAA();
+    
+    cout << "main_a_re = " << main_a_re << endl;
+    //函数作为左值
+    //引用如果当函数返回值的话, 函数可以当左值.
+    getAA() = 1000;
+    cout << "getAA() = " << getAA() << endl;
     return 0;
 }
