@@ -52,13 +52,26 @@ inline void printAB(int a, int b);
  void func(float a, int b);OK
  int func(int a); 与一相冲突.
  */
-int func1(){
-    return 0;
+int func1(void){
+    
+    cout << "xxx" << endl;
+    return 2;
 }
 int func1(int a)
 {
+    cout << "int a" <<endl;
     return a;
 }
+int func1(int a, int b)
+{
+    cout << "int a, int b" <<endl;
+    return a + b;
+}
+//实现函数指针的方法1.
+//定义一个 返回值为int, 有两个为int的参数的参数列表的 函数类型名为 MY_FUNC
+typedef int(MY_FUNC)(int, int);
+
+typedef int (*MY_FUNC_P) (int);
 //void func1(int a)
 //{
 //
@@ -66,8 +79,28 @@ int func1(int a)
 int main(int argc, const char * argv[]) {
     // insert code here...
     
+    // 方法1
+    //初始化一个MY_FUNC类型的指针
+    MY_FUNC *fun1 = NULL;
+    //将函数指针指向类型相匹配的函数
+    //发送函数名即可, 不需要添加()
+    fun1 = func1;
+    cout << fun1(10, 20) << endl;
     
+    
+    ////方法二:
+    MY_FUNC_P fun_p = NULL;
+    fun_p = func1;
+    cout << fun_p(10) << endl;
 
+    
+    //方式三: 
+    int(*p)(void) = NULL;
+    p = func1;
+    
+    //当使用函数指针执行函数的时候, 需要加括号额..
+    cout << p() <<endl;
+    
     
     return 0;
 }
