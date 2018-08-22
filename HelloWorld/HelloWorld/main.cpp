@@ -252,9 +252,13 @@ namespace Pointer {
 }
 using namespace Pointer;
 int main(int argc, const char * argv[]) {
+
+    //只有const引用, 才能对常量进行引用
+    const int a = 10;
     
-
-
+    const int& re = a;
+    
+    
     return 0;
 }
 
