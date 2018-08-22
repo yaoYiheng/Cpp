@@ -11,7 +11,7 @@
 
 
 using namespace std;
-  
+
 
 /**
  1. 内联函数声明时inline关键字必须和函数定义结合在一起, 否则编译器会直接忽略内联请求
@@ -33,17 +33,41 @@ using namespace std;
  */
 inline void printAB(int a, int b);
 
+
+/*
+
+ 函数的重载:
+ 
+ 1. 函数名相同
+ 2. 参数个数不同, 参数的类型不同, 参数的顺序不同, 均可构成重载
+ 3. 返回值类型不同, 则不可构成重载
+ 顺序:
+ 1. 如果能严格匹配 ,调用完全匹配的.
+ 2. 如果没没有完全匹配, 调用隐式转换
+ 3. 都匹配不到, 则调用失败.
+ 
+ void func(int a);
+ void func(float a); OK
+ void func(int a, float b); OK
+ void func(float a, int b);OK
+ int func(int a); 与一相冲突.
+ */
+int func1(){
+    return 0;
+}
+int func1(int a)
+{
+    return a;
+}
+//void func1(int a)
+//{
+//
+//}
 int main(int argc, const char * argv[]) {
     // insert code here...
     
     
-    int a = 10;
-    int b = 20;
-    int c = 0;
-    
-    c = MAX(a, b);
-    
-    cout << "c = " << c <<endl;
+
     
     return 0;
 }
