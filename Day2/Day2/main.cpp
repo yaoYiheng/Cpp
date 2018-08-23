@@ -72,12 +72,107 @@ int func1(int a, int b)
 typedef int(MY_FUNC)(int, int);
 
 typedef int (*MY_FUNC_P) (int);
-//void func1(int a)
-//{
-//
-//}
+
+class myDate {
+    
+    //根据封装, 成员一般定义为私有变量, 只是给外界暴露接口即可
+    //C++中Struct与Class一样, 但Struct的默认权限为public, Class为private
+private:
+    short year;
+    short month;
+    short day;
+    
+public:
+    //getter
+    short getYear()
+    {
+        return year;
+    }
+    //setter
+    void setYear(short newYear)
+    {
+        year = newYear;
+    }
+    void initMyDate()
+    {
+        cin >> year;
+        cin >> month;
+        cin >> day;
+    }
+    void printDate()
+    {
+        cout << year <<"year" <<month << "month" << day <<"day" << endl;
+    }
+    
+    bool isLeapYear()
+    {
+        if ((year % 4 == 0 && year % 100 != 0) || year % 400 == 0) {
+            return true;
+        }
+        
+        return false;
+    }
+};
+
+class Circle {
+private:
+    double m_Radius;
+    double m_Perimeter;
+    double m_Area;
+    
+public:
+    void setRaius(double newRadius)
+    {
+        m_Radius = newRadius;
+    }
+    double getRaius()
+    {
+        return m_Radius;
+    }
+    
+    double getPerimeter()
+    {
+        m_Perimeter = 2 * m_Radius * 3.14;
+        return m_Perimeter;
+    }
+    
+    double getArea()
+    {
+        m_Area = 3.14 * m_Radius * m_Radius;
+        return m_Area;
+    }
+    void showInfo()
+    {
+        cout << "半径 = " << m_Radius << endl;
+        cout << "周长 = " << getPerimeter() << endl;
+        cout << "面积 = " << getArea() << endl;
+    }
+};
+
 int main(int argc, const char * argv[]) {
     // insert code here...
+    
+    Circle cir;
+    cir.setRaius(10);
+    
+    cir.showInfo();
+    
+    
+    
+    return 0;
+}
+
+/**
+ 函数的实现.
+ 简单且调用频繁的函数, 使用inline
+ */
+inline void printAB(int a, int b)
+{
+    cout << "a = " << a << ", b = " << b <<endl;
+}
+
+void practise()
+{
     
     // 方法1
     //初始化一个MY_FUNC类型的指针
@@ -92,9 +187,9 @@ int main(int argc, const char * argv[]) {
     MY_FUNC_P fun_p = NULL;
     fun_p = func1;
     cout << fun_p(10) << endl;
-
     
-    //方式三: 
+    
+    //方式三:
     int(*p)(void) = NULL;
     p = func1;
     
@@ -102,14 +197,19 @@ int main(int argc, const char * argv[]) {
     cout << p() <<endl;
     
     
-    return 0;
 }
 
-/**
- 函数的实现.
- 简单且调用频繁的函数, 使用inline
- */
-inline void printAB(int a, int b)
+void practise1()
 {
-    cout << "a = " << a << ", b = " << b <<endl;
+    myDate date;
+    date.initMyDate();
+    date.printDate();
+    if (date.isLeapYear()) {
+        cout << "是闰年" << endl;
+    }
+    else
+    {
+        cout << "不是闰年" <<endl;
+    }
+
 }
