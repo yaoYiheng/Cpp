@@ -7,6 +7,7 @@
 //
 
 #include <iostream>
+#include "Circle.hpp"
 #define MAX(a, b) ((a) > (b)? (a):(b))
 
 
@@ -114,46 +115,12 @@ public:
     }
 };
 
-class Circle {
-private:
-    double m_Radius;
-    double m_Perimeter;
-    double m_Area;
-    
-public:
-    void setRaius(double newRadius)
-    {
-        m_Radius = newRadius;
-    }
-    double getRaius()
-    {
-        return m_Radius;
-    }
-    
-    double getPerimeter()
-    {
-        m_Perimeter = 2 * m_Radius * 3.14;
-        return m_Perimeter;
-    }
-    
-    double getArea()
-    {
-        m_Area = 3.14 * m_Radius * m_Radius;
-        return m_Area;
-    }
-    void showInfo()
-    {
-        cout << "半径 = " << m_Radius << endl;
-        cout << "周长 = " << getPerimeter() << endl;
-        cout << "面积 = " << getArea() << endl;
-    }
-};
 
 int main(int argc, const char * argv[]) {
     // insert code here...
     
     Circle cir;
-    cir.setRaius(10);
+    cir.setRaius(12 );
     
     cir.showInfo();
     
