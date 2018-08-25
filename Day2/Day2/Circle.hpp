@@ -10,14 +10,15 @@
 #define Circle_hpp
 
 #include <stdio.h>
+#include "myPoint.hpp"
 
-#endif /* Circle_hpp */
 
 class Circle {
 private:
     double m_Radius;
     double m_Perimeter;
     double m_Area;
+    myPoint m_Center;
     
 public:
     void setRaius(double newRadius);
@@ -29,6 +30,13 @@ public:
     double getArea();
     
     void showInfo();
+    
+    void setCenter(myPoint &center);
+    
+    myPoint getCenter();
+    
+    bool isInCirle(myPoint &myPoint);
 
     
 };
+#endif /* Circle_hpp */

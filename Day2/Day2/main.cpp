@@ -8,6 +8,8 @@
 
 #include <iostream>
 #include "Circle.hpp"
+#include "Cube.hpp"
+#include "myPoint.hpp"
 #define MAX(a, b) ((a) > (b)? (a):(b))
 
 
@@ -120,11 +122,33 @@ int main(int argc, const char * argv[]) {
     // insert code here...
     
     Circle cir;
-    cir.setRaius(12 );
+    myPoint center;
+    center.setXandY(0, 0);
+    cir.setRaius(1);
+    cir.setCenter(center);
+    
+    myPoint point;
+    point.setXandY(1, 1);
+    if(cir.isInCirle(point))
+    {
+        cout << "点在圆内" << endl;
+    }
+    else
+    {
+        cout << "点在圆外" << endl;
+    }
     
     cir.showInfo();
-    
-    
+    Cube cubeOne, cubeTwo;
+    cubeOne.setLWH(10, 20, 10);
+    cubeTwo.setLWH(20, 30, 10);
+    if (cubeTwo.isEqual(cubeOne)) {
+        cout << "相等" << endl;
+    }
+    else
+    {
+        cout << "不相等" << endl;
+    }
     
     return 0;
 }

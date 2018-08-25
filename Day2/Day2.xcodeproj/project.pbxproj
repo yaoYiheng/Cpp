@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		DB5CEF10212C7FF5001F4990 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DB5CEF0F212C7FF5001F4990 /* main.cpp */; };
 		DBA481F621303A3B00C72B4D /* Circle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DBA481F421303A3B00C72B4D /* Circle.cpp */; };
+		DBA481FA2130417300C72B4D /* Cube.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DBA481F82130417300C72B4D /* Cube.cpp */; };
+		DBA481FD21304B5B00C72B4D /* Point.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DBA481FB21304B5B00C72B4D /* Point.cpp */; };
+		DBA48200213056C300C72B4D /* myPoint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DBA481FE213056C300C72B4D /* myPoint.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -28,6 +31,12 @@
 		DB5CEF0F212C7FF5001F4990 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		DBA481F421303A3B00C72B4D /* Circle.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Circle.cpp; sourceTree = "<group>"; };
 		DBA481F521303A3B00C72B4D /* Circle.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Circle.hpp; sourceTree = "<group>"; };
+		DBA481F82130417300C72B4D /* Cube.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Cube.cpp; sourceTree = "<group>"; };
+		DBA481F92130417300C72B4D /* Cube.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Cube.hpp; sourceTree = "<group>"; };
+		DBA481FB21304B5B00C72B4D /* Point.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Point.cpp; sourceTree = "<group>"; };
+		DBA481FC21304B5B00C72B4D /* Point.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Point.hpp; sourceTree = "<group>"; };
+		DBA481FE213056C300C72B4D /* myPoint.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = myPoint.cpp; sourceTree = "<group>"; };
+		DBA481FF213056C300C72B4D /* myPoint.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = myPoint.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +72,12 @@
 				DB5CEF0F212C7FF5001F4990 /* main.cpp */,
 				DBA481F421303A3B00C72B4D /* Circle.cpp */,
 				DBA481F521303A3B00C72B4D /* Circle.hpp */,
+				DBA481F82130417300C72B4D /* Cube.cpp */,
+				DBA481F92130417300C72B4D /* Cube.hpp */,
+				DBA481FB21304B5B00C72B4D /* Point.cpp */,
+				DBA481FC21304B5B00C72B4D /* Point.hpp */,
+				DBA481FE213056C300C72B4D /* myPoint.cpp */,
+				DBA481FF213056C300C72B4D /* myPoint.hpp */,
 			);
 			path = Day2;
 			sourceTree = "<group>";
@@ -123,8 +138,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DBA481FD21304B5B00C72B4D /* Point.cpp in Sources */,
+				DBA481FA2130417300C72B4D /* Cube.cpp in Sources */,
 				DB5CEF10212C7FF5001F4990 /* main.cpp in Sources */,
 				DBA481F621303A3B00C72B4D /* Circle.cpp in Sources */,
+				DBA48200213056C300C72B4D /* myPoint.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
