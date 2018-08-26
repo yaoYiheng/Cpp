@@ -117,10 +117,115 @@ void test()
     
     cout << "test结束" << endl;
 }
+class Teacher {
+    int m_id;
+    char *m_name;
+    
+public:
+    Teacher(int id, char* name)
+    {
+        m_id = id;
+        
+        m_name = (char *)malloc(strlen(name) + 1);
+        strcpy(m_name, name);
+
+    }
+    //显示的提供一个拷贝函数, 完成深拷贝动作.
+    //各自
+    Teacher(const Teacher &newTeacher)
+    {
+        m_id = newTeacher.m_id;
+        
+        //深拷贝
+        m_name = (char *)malloc(strlen(m_name) + 1);
+        strcpy(m_name, newTeacher.m_name);
+        
+        
+    }
+    void showInfo()
+    {
+        cout << "id = " << m_id <<", name = " << m_name <<endl;
+    }
+    ~Teacher()
+    {
+        cout << "调用析构函数" << endl;
+        if (m_name != NULL)
+        {
+            free(m_name);
+            m_name = NULL;
+        }
+    }
+};
+
+void Test3()
+{
+    Teacher t1(1, "zhangsan");
+    t1.showInfo();
+    
+    //调用拷贝构造函数, 同样也为t2分配一片内存空间, 当被销毁时, 他们销毁各自的空间.
+    Teacher t2(t1);
+    t2.showInfo();
+}
+
+class A {
+private:
+    int m_id;
+    
+public:
+    A(int id)
+    {
+        m_id = id;
+    }
+    
+    void info()
+    {
+        cout << m_id<<endl;
+    }
+};
+
+class B {
+private:
+    const int m_number;
+    A m_aa;
+    A m_aaa;
+    
+public:
+    //B的构造函数
+    //构造对象成员的顺序跟初始化列表的顺序无关.
+    //而是跟成员对象的定义顺序有关.
+    //在初始化列表中, 调用A的构造函数, 完成对B类中的类成员A的初始化
+    //如果成员变量有const的常量, 则必须在初始化列表中进行赋值!
+    B(int num, A &a2, A &a3):m_number(num), m_aa(a2), m_aaa(a3)
+    {
+        
+    }
+    
+    //也可以将成员变量写到初始化列表当中.注意上下的 m_number的初始化过程.
+    B(int num, int a1, int a2): m_number(num), m_aa(a1), m_aaa(a2)
+    {
+//        m_number = num;
+    }
+    
+    void info()
+    {
+        cout << m_number <<endl;
+        m_aa.info();
+        m_aaa.info();
+        
+    }
+};
 int main(int argc, const char * argv[]) {
 
 //    test();
-    test1();
+//    test1();
+//    Teacher t1(1, "zhangsan");
+    
+//    Test3();
 
+    A a(0), b(12);
+    B bb(20, 111, 222);
+    
+    bb.info();
+    
     return 0;
 }
