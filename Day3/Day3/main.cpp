@@ -13,8 +13,15 @@ private:
     int m_x;
     int m_y;
     
+    //如果将静态成员写在private下, 且想要访问该静态成员, 则需要为该静态成员写一个静态方法
+    static int m_z;
 public:
-
+    
+    static int get_z()
+    {
+        m_z++;
+        return m_z;
+    }
     //在类中会有个默认的午餐构造函数
     /*
         当没有任何***显示的构造函数(显示的无构造, 显示有参, 显示拷贝构造)***的时候, 默认无参构造函数就会出现
@@ -70,6 +77,10 @@ public:
         cout << "~Test被调用" << endl;
     }
 };
+//如果类中存在静态成员变量, 则需要在类的外部进行对静态成员变量的初始化.
+int Test:: m_z = 0;
+
+
 
 Test func1()
 {
@@ -275,7 +286,12 @@ int main(int argc, const char * argv[]) {
 //
 //    bb.info();
     
-    Test2();
+//    Test2();
+    Test ti(100, 200);
     
+    cout << "ti = " <<ti.get_z() <<endl;
+    
+    //m_z是属于Test类, 可以不通过类对象来调用.
+    cout << Test::get_z() << endl;
     return 0;
 }
