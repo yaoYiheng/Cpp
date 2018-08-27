@@ -214,6 +214,54 @@ public:
         
     }
 };
+
+/**
+ C语音的分配与释放内存
+ */
+void Test1()
+{
+//    int[] * array = (int []*)malloc(sizeof(int) * 10);
+    int *array_p = (int *)malloc(sizeof(int) * 10);
+    for (int i = 0; i < sizeof(array_p); i++) {
+        array_p[i] = i + 1;
+    }
+    
+    for (int i = 0; i < sizeof(array_p); i++)
+    {
+        cout << array_p[i] << " " << endl;
+    }
+    
+    if (array_p != NULL)
+    {
+        free(array_p);
+        array_p = NULL;
+    }
+}
+void Test2()
+{
+    int *array_p = new int[sizeof(int) * 10];
+    for (int i = 0 ; i < sizeof(array_p); i++) {
+        array_p[i] = i + 1;
+    }
+    
+    for (int i = 0; i < sizeof(array_p); i++)
+    {
+        cout << array_p[i] << endl;
+    }
+    
+    if (array_p != NULL)
+    {
+        //手动回收再堆分配的内存
+        // 释放数组, 需要在delete后加[]
+        delete[] array_p;
+        //在c++中也可以使用c的函数
+//        free(array_p);
+        
+        //初始化指针
+        array_p = NULL;
+        
+    }
+}
 int main(int argc, const char * argv[]) {
 
 //    test();
@@ -222,10 +270,12 @@ int main(int argc, const char * argv[]) {
     
 //    Test3();
 
-    A a(0), b(12);
-    B bb(20, 111, 222);
+//    A a(0), b(12);
+//    B bb(20, 111, 222);
+//
+//    bb.info();
     
-    bb.info();
+    Test2();
     
     return 0;
 }
