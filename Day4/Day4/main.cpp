@@ -19,6 +19,7 @@ public:
     Goods *m_head;
     
     //静态方法, 返回静态成员变量的值.
+    //static成员函数, 只能返回static成员变量
     static float getTotalWeight()
     {
         return m_totalWeight;
@@ -30,7 +31,7 @@ public:
         m_weight = weight;
         m_totalWeight += weight;
         m_head = NULL;
-        cout << "创建了一个重量为" << weight <<"的货物" << endl;
+        cout << "创建了一个重量为" << this <<"的货物" << endl;
     }
     Goods()
     {
@@ -73,7 +74,6 @@ void buy(Goods * &head, float weight)
     }
     
 }
-
 void sale(Goods * &head)
 {
     if (head == NULL)
@@ -88,8 +88,8 @@ void sale(Goods * &head)
     cout << "卖出" <<endl;
     delete temp;
 }
-int main(int argc, const char * argv[]) {
-    // insert code here...
+int TestOne()
+{
 
     int choice = 0;
     Goods *head = NULL;
@@ -118,6 +118,37 @@ int main(int argc, const char * argv[]) {
         }
         cout << "当仓库的总重量是" << Goods:: getTotalWeight() << endl;
     } while (1);
+}
+
+class A {
+private:
+    int m_x;
+    
+public:
+    A()
+    {
+        m_x = 0;
+    }
+    A(int x)
+    {
+        m_x = x;
+    }
+    
+    void setX(int x)
+    {
+        m_x = x;
+    }
+    
+    int getX() const //成员函数尾部出现的const, 是用来修饰this指针. 使其为只读属性.从而无法被修改
+    {
+        //因为const的修饰, 所以不能进行修改.
+//        this->m_x = 10;
+        return this->m_x;
+    }
+};
+
+int main(int argc, const char * argv[]) {
+    // insert code here...
     
     
     return 0;
