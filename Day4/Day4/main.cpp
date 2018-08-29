@@ -8,6 +8,7 @@
 
 #include <iostream>
 #include "MyArray.hpp"
+#include <cmath>
 using namespace std;
 
 class Goods {
@@ -183,8 +184,9 @@ void TestTwo()
     a1.show();
     
 }
-int main(int argc, const char * argv[]) {
-    // insert code here...
+
+void TestThree()
+{
     
     MyArray array1(10);
     
@@ -192,7 +194,7 @@ int main(int argc, const char * argv[]) {
     {
         array1.setData(i, i+ 10);
     }
-
+    
     MyArray array2 = array1;
     
     for (int i = 0; i < array2.getLength(); i++) {
@@ -205,6 +207,75 @@ int main(int argc, const char * argv[]) {
     for (int i = 0; i < array3.getLength(); i++) {
         cout << "array3 = " << array3.getData(i) << " " ;
     }
+}
+
+class Point {
+private:
+    float x;
+    float y;
+    
+public:
+    float friend friendDistancePoints(Point &p1, Point &p2);
+    Point(float x, float y)
+    {
+        this->x = x;
+        this->y = y;
+    }
+    void setXandY(float newX, float newY)
+    {
+        this->x = newX;
+        this->y = newY;
+    }
+    
+    float getX()
+    {
+        return this->x;
+    }
+    float getY()
+    {
+        return this->y;
+    }
+};
+
+/**
+ 友元函数: 当一个函数需要频繁调用到某一个类的get, set方法时, 可以通过使用友元函数
+ 来直接访问类的成员变量, 减少存取方法的调用以节省开销. 但会破坏封装及安全.
+ 
+ 在类中声明欲使用的友元函数, 使用 friend 关键字
+
+ @param p1 <#p1 description#>
+ @param p2 <#p2 description#>
+ @return 两点的距离差
+ */
+float friendDistancePoints(Point &p1, Point &p2)
+{
+    float dis;
+    
+    float x = p1.x - p2.x;
+    float y = p2.y - p2.y;
+    
+    dis = sqrt(x * x + y * y);
+    
+    return dis;
+}
+float distancePoints(Point &p1, Point &p2)
+{
+    float dis;
+    
+    float x = p1.getX() - p2.getX();
+    float y = p2.getY() - p2.getY();
+    
+    dis = sqrt(x * x + y * y);
+    
+    return dis;
+}
+int main(int argc, const char * argv[]) {
+    // insert code here...
+
+    Point p1(0, 2), p2(1, 0);
+    
+    cout << "distance = " <<distancePoints(p1, p2) <<endl;
+    
     
     return 0;
 }
