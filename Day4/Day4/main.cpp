@@ -7,12 +7,14 @@
 //
 
 #include <iostream>
+#include "MyArray.hpp"
 using namespace std;
 
 class Goods {
 private:
     float m_weight;
     static float m_totalWeight;
+    
     
 public:
     
@@ -123,20 +125,24 @@ int TestOne()
 class A {
 private:
     int m_x;
+    int m_y;
     
 public:
     A()
     {
         m_x = 0;
+        m_y = 0;
     }
-    A(int x)
+    A(int x, int y)
     {
         m_x = x;
+        m_y = y;
     }
     
-    void setX(int x)
+    void setX(int x, int y)
     {
         m_x = x;
+        m_y = y;
     }
     
     int getX() const //成员函数尾部出现的const, 是用来修饰this指针. 使其为只读属性.从而无法被修改
@@ -145,11 +151,60 @@ public:
 //        this->m_x = 10;
         return this->m_x;
     }
+    
+    A& plusEqual(A &newA)
+    {
+        this->m_x += newA.m_x;
+        this->m_y += newA.m_y;
+        
+        return *this; //如果想要返回一个对象本身, 在成员方法中,用  *this返回
+    }
+    
+    void add(A &newA)
+    {
+        this->m_x += newA.m_x;
+        this->m_y += newA.m_y;
+        
+    }
+    void show()
+    {
+        cout << this->m_x <<" "<< this->m_y << endl;
+    }
 };
-
+void TestTwo()
+{
+    A a1(10, 20), a2(100, 200);
+    
+    //    a1.add(a2);
+    a1.show();
+    //如果想对一个对象连续调用成员方法, 每次都会改变对象本身, 成员方法需要返回引用 (*this)
+    a1.plusEqual(a2).plusEqual(a2);
+    
+    a1.show();
+    
+}
 int main(int argc, const char * argv[]) {
     // insert code here...
     
+    MyArray array1(10);
+    
+    for (int i = 0; i < array1.getLength(); i++)
+    {
+        array1.setData(i, i+ 10);
+    }
+
+    MyArray array2 = array1;
+    
+    for (int i = 0; i < array2.getLength(); i++) {
+        cout << array2.getData(i) << " " ;
+    }
+    cout << endl;
+    
+    MyArray array3;
+    array3 = array1;
+    for (int i = 0; i < array3.getLength(); i++) {
+        cout << "array3 = " << array3.getData(i) << " " ;
+    }
     
     return 0;
 }
