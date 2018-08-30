@@ -10,12 +10,13 @@
 #define MyArray_hpp
 #include <stdio.h>
 #include <iostream>
+using namespace std;
 class MyArray
 {
 private:
     int m_length;
     int *m_space;
-    
+
 public:
     MyArray();
 
@@ -27,5 +28,11 @@ public:
     int getData(int index);
     int getLength();
     void operator=(const MyArray &array);
+    bool operator==(const MyArray &array);
+    int operator[](int index);
+    friend ostream &operator<<(ostream &os, MyArray &array);
+    friend istream &operator>>(istream &is, MyArray &array);
 };
+
+
 #endif /* MyArray_hpp */

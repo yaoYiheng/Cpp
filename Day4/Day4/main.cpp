@@ -442,21 +442,73 @@ istream & operator>> (istream &is, Complex &c1)
     
     return is;
 }
-int main(int argc, const char * argv[]) {
-    // insert code here...
+
+void TestSix()
+{
     Complex c1(1, 2);
     Complex c2(2, 3);
     
-//    c1 += c1 -=c2;
-
+    //    c1 += c1 -=c2;
+    
     c1 += c1 -= c2;//从右往左
     ++c1;
-//    c1.info();
+    //    c1.info();
     cout << c1;
-
+    
     cin >> c1;
-
+    
     
     cout << c1;
+}
+
+void TestSeven()
+{
+    MyArray array1(10);
+    MyArray array2(5);
+    
+    for (int i = 0; i < 10; i++) {
+        array1.setData(i, i + 4);
+        
+    }
+    
+    for (int i = 0; i < 5; i++) {
+        
+        array2.setData(i, i + 4);
+    }
+    if (array1 == array2)
+    {
+        cout << "两个相等" <<endl;
+    }
+    else
+    {
+        cout << "两个不相等" <<endl;
+    }
+    
+    
+    cout << array1 <<endl;
+    cout << array2 <<endl;
+    
+    cin >> array1;
+    
+    cout << array1 << endl;
+    
+}
+int main(int argc, const char * argv[]) {
+    // insert code here...
+    MyArray array1(10);
+    MyArray array2(10);
+    
+    for (int i = 0; i < 10; i++) {
+        array1.setData(i, i + 4);
+        
+    }
+    
+    for (int i = 0; i < 10; i++) {
+        
+        array2.setData(i, i + 1);
+    }
+    
+    array1 = array2;
+    cout << array2;
     return 0;
 }
