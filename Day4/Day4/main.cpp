@@ -325,19 +325,43 @@ public:
     }
     //    friend Complex operator+(Complex &p1, Complex &p2);
     //于上面的函数相冲突
+    //重写加法运算操作符
     Complex operator+(Complex &p2)
     {
         Complex temp(this->a + p2.a, this->b + p2.b);
         
         return temp;
     }
+    //重写减法运算操作符
     Complex operator-(Complex &p2)
     {
         Complex temp(this->a - p2.a, this->b - p2.b);
         return temp;
     }
+    //重写双目加法运算操作符 在类的内部
+//    Complex& operator+=(Complex &p2)
+//    {
+//        this->a += p2.a; this->b += p2.b;
+//        return *this;
+//    }
+    friend Complex& operator+=(Complex &p1, Complex &p2);
+    
+    //重写双目加法运算操作符 在类的内部
+        Complex& operator-=(Complex &p2)
+        {
+            this->a -= p2.a; this->b -= p2.b;
+            
+            return *this;
+        }
 };
-
+//在类的外部实现双目运算符
+Complex& operator+=(Complex &p1, Complex &p2)
+{
+    p1.a += p2.a;
+    p1.b += p2.b;
+    
+    return p1;
+}
 //先是编写全局函数, 实现两个自定义的类相加
 Complex complexAdd(Complex &p1, Complex &p2)
 {
@@ -352,27 +376,37 @@ Complex complexAdd(Complex &p1, Complex &p2)
 //
 //    return temp;
 //}
-int main(int argc, const char * argv[]) {
-    // insert code here...
-
-
+void TestFive()
+{
     Complex c1(1, 2);
     Complex c2(2, 3);
     c1.info();
     c2.info();
-//    Complex c3 = complexAdd(c1, c2);
-
+    //    Complex c3 = complexAdd(c1, c2);
+    
     //以下写法均有效.
-//    Complex c3 = c1.complexAdd(c2);
-//    Complex c3 = c1 + c2;
+    //    Complex c3 = c1.complexAdd(c2);
+    //    Complex c3 = c1 + c2;
     Complex c3 = c1.operator+(c2);
     //等价于👆的写法
-//    Complex c3 = operator+(c1, c2);
+    //    Complex c3 = operator+(c1, c2);
     
     c3.info();
     
     //减法操作.
     Complex c4 = c1 - c3;
     c4.info();
+}
+int main(int argc, const char * argv[]) {
+    // insert code here...
+    Complex c1(1, 2);
+    Complex c2(2, 3);
+    
+//    c1 += c1 -=c2;
+
+    c1 += c1 -= c2;//从右往左
+    c1.info();
+
+
     return 0;
 }
