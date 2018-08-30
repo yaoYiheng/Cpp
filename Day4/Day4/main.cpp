@@ -209,6 +209,7 @@ void TestThree()
     }
 }
 
+
 class Point {
 private:
     float x;
@@ -235,8 +236,27 @@ public:
     {
         return this->y;
     }
+    friend float friendDistancePoints(Point &p1, Point &p2);
+    
 };
-
+float distancePoints(Point &p1, Point &p2)
+{
+    float dis;
+    
+    float x = p1.getX() - p2.getX();
+    float y = p2.getY() - p2.getY();
+    
+    dis = sqrt(x * x + y * y);
+    
+    return dis;
+}
+void TestFour()
+{
+    Point p1(0, 2), p2(1, 0);
+    
+    cout << "distance = " <<distancePoints(p1, p2) <<endl;
+    
+}
 /**
  友元函数: 当一个函数需要频繁调用到某一个类的get, set方法时, 可以通过使用友元函数
  来直接访问类的成员变量, 减少存取方法的调用以节省开销. 但会破坏封装及安全.
@@ -265,24 +285,94 @@ float friendDistancePoints(Point &p1, Point &p2)
     
     return dis;
 }
-float distancePoints(Point &p1, Point &p2)
+
+class Complex {
+private:
+    int a;
+    int b;
+    
+public:
+    Complex()
+    {
+        a = 0;
+        b = 0;
+    }
+    Complex(int a, int b)
+    {
+        this->a = a;
+        this->b = b;
+    }
+//    Complex(const Complex &com)
+//    {
+//        this->a = com.a;
+//        this->b = com.b;
+//    }
+    void info()
+    {
+        cout << "("<<this->a<<", "<<this->b <<"i)" <<endl;
+    }
+    
+    //友元函数
+    friend Complex complexAdd(Complex &p1, Complex &p2);
+
+    
+    //在类的内部实现自定义类的操作运输
+    Complex complexAdd(Complex &p2)
+    {
+        Complex temp(this->a + p2.a, this->b + p2.b);
+        
+        return temp;
+    }
+    //    friend Complex operator+(Complex &p1, Complex &p2);
+    //于上面的函数相冲突
+    Complex operator+(Complex &p2)
+    {
+        Complex temp(this->a + p2.a, this->b + p2.b);
+        
+        return temp;
+    }
+    Complex operator-(Complex &p2)
+    {
+        Complex temp(this->a - p2.a, this->b - p2.b);
+        return temp;
+    }
+};
+
+//先是编写全局函数, 实现两个自定义的类相加
+Complex complexAdd(Complex &p1, Complex &p2)
 {
-    float dis;
+    Complex temp(p1.a + p2.a, p1.b + p2.b);
     
-    float x = p1.getX() - p2.getX();
-    float y = p2.getY() - p2.getY();
-    
-    dis = sqrt(x * x + y * y);
-    
-    return dis;
+    return temp;
 }
+//在全局编写操作运算符
+//Complex operator+(Complex &p1, Complex &p2)
+//{
+//    Complex temp(p1.a + p2.a, p1.b + p2.b);
+//
+//    return temp;
+//}
 int main(int argc, const char * argv[]) {
     // insert code here...
 
-    Point p1(0, 2), p2(1, 0);
+
+    Complex c1(1, 2);
+    Complex c2(2, 3);
+    c1.info();
+    c2.info();
+//    Complex c3 = complexAdd(c1, c2);
+
+    //以下写法均有效.
+//    Complex c3 = c1.complexAdd(c2);
+//    Complex c3 = c1 + c2;
+    Complex c3 = c1.operator+(c2);
+    //等价于👆的写法
+//    Complex c3 = operator+(c1, c2);
     
-    cout << "distance = " <<distancePoints(p1, p2) <<endl;
+    c3.info();
     
-    
+    //减法操作.
+    Complex c4 = c1 - c3;
+    c4.info();
     return 0;
 }
