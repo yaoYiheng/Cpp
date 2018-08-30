@@ -353,6 +353,25 @@ public:
             
             return *this;
         }
+    
+    //在类中重写前++(++在类前)
+    Complex& operator++()
+    {
+        this->a++;
+        this->b++;
+        
+        return  *this;
+    }
+    //后++
+    const Complex operator++(int)
+    {
+        //临时
+        Complex temp(this->a, this->b);
+        this->a++;
+        this->b++;
+        
+        return temp;
+    }
 };
 //在类的外部实现双目运算符
 Complex& operator+=(Complex &p1, Complex &p2)
@@ -405,6 +424,7 @@ int main(int argc, const char * argv[]) {
 //    c1 += c1 -=c2;
 
     c1 += c1 -= c2;//从右往左
+    ++c1;
     c1.info();
 
 
