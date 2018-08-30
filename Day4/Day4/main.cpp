@@ -372,6 +372,13 @@ public:
         
         return temp;
     }
+    
+    //左移操作符只能写在全局, 不能写在成员方法中, 否则调用的顺序会变反, c1 <<cout
+    friend ostream & operator<< (ostream &os, Complex &c1);
+    
+    //声明 右移操作符
+    friend istream & operator>> (istream &is, Complex &c1);
+    
 };
 //在类的外部实现双目运算符
 Complex& operator+=(Complex &p1, Complex &p2)
@@ -416,6 +423,25 @@ void TestFive()
     Complex c4 = c1 - c3;
     c4.info();
 }
+
+//类的左移操作符, 为了正常调用, 只能写在类的外部 .
+ostream & operator<< (ostream &os, Complex &c1)
+{
+    os <<"("<<c1.a<<", "<<c1.b <<"i)" <<endl;
+    
+    return os;
+}
+
+istream & operator>> (istream &is, Complex &c1)
+{
+    cout << "a = ";
+    cin >>c1.a;
+    
+    cout << "b = ";
+    cin >> c1.b;
+    
+    return is;
+}
 int main(int argc, const char * argv[]) {
     // insert code here...
     Complex c1(1, 2);
@@ -425,8 +451,12 @@ int main(int argc, const char * argv[]) {
 
     c1 += c1 -= c2;//从右往左
     ++c1;
-    c1.info();
+//    c1.info();
+    cout << c1;
 
+    cin >> c1;
 
+    
+    cout << c1;
     return 0;
 }
