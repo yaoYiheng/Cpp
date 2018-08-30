@@ -246,6 +246,13 @@ public:
  @param p1 <#p1 description#>
  @param p2 <#p2 description#>
  @return 两点的距离差
+ 
+ 友元类:
+    如果两个类想要有友元类, 则需要在类中声明
+ friend class ClassName;
+ 才能在 在本类中访问其他类的私有成员.
+ 
+ 友元类关系不能被继承, 不具有交换性. 不具有传递性.
  */
 float friendDistancePoints(Point &p1, Point &p2)
 {
