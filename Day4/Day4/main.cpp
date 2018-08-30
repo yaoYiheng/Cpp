@@ -467,7 +467,9 @@ void TestSeven()
     MyArray array2(5);
     
     for (int i = 0; i < 10; i++) {
-        array1.setData(i, i + 4);
+        //作为左值, 返回的是一个m_space[index]的引用.
+        //所以在重写[]操作符时, 返回值是 int&
+        array1[i] = i + 4 ; 
         
     }
     
@@ -488,27 +490,14 @@ void TestSeven()
     cout << array1 <<endl;
     cout << array2 <<endl;
     
-    cin >> array1;
+//    cin >> array1;
     
     cout << array1 << endl;
+    
     
 }
 int main(int argc, const char * argv[]) {
     // insert code here...
-    MyArray array1(10);
-    MyArray array2(10);
-    
-    for (int i = 0; i < 10; i++) {
-        array1.setData(i, i + 4);
-        
-    }
-    
-    for (int i = 0; i < 10; i++) {
-        
-        array2.setData(i, i + 1);
-    }
-    
-    array1 = array2;
-    cout << array2;
+    TestSeven();
     return 0;
 }

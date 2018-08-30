@@ -57,17 +57,32 @@ MyArray::MyArray(const MyArray &array)
     }
     
 }
-void MyArray::operator= (const MyArray &array)
+MyArray& MyArray::operator= (const MyArray &array)
 {
+    //如果自身赋值
+    if (this == &array)
+    {
+        return *this;
+    }
+    
+    if (this->m_space != NULL)
+    {
+        delete[] this->m_space;
+        this->m_space = NULL;
+        this->m_length = 0;
+    }
     //先判断是否合法
     if (array.m_length >= 0)
     {
+    
+        //执行深拷贝.
         this->m_length = array.m_length;
         this->m_space = new int[m_length];
         for (int i = 0; i < m_length; i++) {
             this->m_space[i] = array.m_space[i];
         }
     }
+    return *this;
 }
 bool MyArray::operator==(const MyArray &array)
 {
@@ -101,7 +116,7 @@ istream &operator>>(istream &is, MyArray &array)
     
     return is;
 }
-int MyArray::operator[](int index)
+int& MyArray::operator[](int index)
 {
     return this->m_space[index];
 }

@@ -27,9 +27,9 @@ public:
     void setData(int index, int data);
     int getData(int index);
     int getLength();
-    void operator=(const MyArray &array);
+    MyArray& operator=(const MyArray &array);
     bool operator==(const MyArray &array);
-    int operator[](int index);
+    int& operator[](int index);
     friend ostream &operator<<(ostream &os, MyArray &array);
     friend istream &operator>>(istream &is, MyArray &array);
 };

@@ -67,10 +67,14 @@ public:
             return *this;
         }
         
-        //2. 如果不一样, 先将自身目前指向的地址释放掉
-        delete [] this->name;
-        this->name = NULL;
-        this->id = 0;
+        //2.先将自身目前指向的地址释放掉
+        if (this->name != NULL)
+        {
+            delete [] this->name;
+            this->name = NULL;
+            this->id = 0;
+        }
+        
         
         //3. 赋值
         this->name = new char[strlen(stu.name) + 1];
