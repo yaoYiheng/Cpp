@@ -91,6 +91,7 @@ void TestOne()
     Student st1(1, "zhangsan");
     //拷贝构造. 会发生浅拷贝问题, 需要提供一个拷贝构造函数
     Student st2 = st1;
+    
     Student st3(2, "lis5");
     
     /*
@@ -109,6 +110,7 @@ private:
 public:
     Sqrt(int a)
     {
+        cout << "构造函数" <<endl;
         this->a = a;
     }
     
@@ -127,6 +129,37 @@ public:
         return value1 * value2;
     }
     friend ostream &operator<<(ostream &os,const Sqrt &s);
+    
+    
+    /**
+     void *为万能指针, 可以指向任何数据类型的指针,
+    虽然是使用malloc创建的, 但是依旧会触发对象的构造函数.
+     @param size <#size description#>
+     @return <#return value description#>
+     */
+    void * operator new(size_t size)
+    {
+        cout << "调用重载new"<< endl;
+        return malloc(size);
+    }
+    
+    
+    /**
+     重载delete方法.调用重载的delete操作符, 可以触发析构函数.
+     @param p <#p description#>
+     */
+    void operator delete(void *p)
+    {
+        if (p != NULL)
+        {
+            free(p);
+        }
+    }
+    
+    ~Sqrt()
+    {
+        cout << "析构" <<endl;
+    }
 };
 ostream &operator<<(ostream &os, const Sqrt &s)
 {
@@ -136,11 +169,16 @@ ostream &operator<<(ostream &os, const Sqrt &s)
 int main(int argc, const char * argv[]) {
     // insert code here...
 
-    Sqrt s(10);
-    Sqrt w(10);
-    int value = w(10, 230);
-    cout << s;
-    cout << value;
+//    Sqrt s(10);
+//    Sqrt w(10);
+//    int value = w(10, 230);
+//    cout << s;
+//    cout << value << endl;
+//
+    Sqrt *sq = new Sqrt(100);
+    
+    delete sq;
+    cout << *sq <<endl;
     
     return 0;
 }
