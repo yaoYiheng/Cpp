@@ -29,6 +29,7 @@ public:
     int getLength();
     MyArray& operator=(const MyArray &array);
     bool operator==(const MyArray &array);
+    bool operator!=(const MyArray &array);
     int& operator[](int index) const;
     friend ostream &operator<<(ostream &os, const MyArray &array) ;
     friend istream &operator>>(istream &is, MyArray &array);

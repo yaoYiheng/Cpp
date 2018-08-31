@@ -99,6 +99,11 @@ bool MyArray::operator==(const MyArray &array)
     }
     return false;
 }
+
+bool MyArray:: operator!=(const MyArray &array)
+{
+    return !(*this == array);
+}
 ostream &operator<<(ostream &os, const MyArray &array)
 {
     for (int i = 0; i < array.m_length; i++) {
