@@ -113,7 +113,10 @@ public:
         cout << "构造函数" <<endl;
         this->a = a;
     }
-    
+    Sqrt()
+    {
+        cout << "无参构造函数" <<endl;
+    }
     //重写()操作符, 可以将一个对象, 当成一个普通函数来调用.
     //称这种对象是仿函数, 伪函数
     int operator()(int value)
@@ -143,7 +146,11 @@ public:
         return malloc(size);
     }
     
-    
+    void * operator new[](size_t size)
+    {
+        cout << "调用重载new[]"<< endl;
+        return malloc(size);
+    }
     /**
      重载delete方法.调用重载的delete操作符, 可以触发析构函数.
      @param p <#p description#>
@@ -153,9 +160,18 @@ public:
         if (p != NULL)
         {
             free(p);
+            p = NULL;
         }
     }
-    
+        void operator delete[](void *p)
+        {
+            if (p != NULL)
+            {
+                free(p);
+                p = NULL;
+            }
+        }
+
     ~Sqrt()
     {
         cout << "析构" <<endl;
@@ -175,8 +191,11 @@ int main(int argc, const char * argv[]) {
 //    cout << s;
 //    cout << value << endl;
 //
-    Sqrt *sq = new Sqrt(100);
+    Sqrt *sq = new Sqrt(100);//等价于 sq->operator new(sizeof(A));
     
+    //等价于sq_array_p->operator new[](sizeof(Sqrt[20]));
+    Sqrt *sq_array_p = new Sqrt[10];
+    delete[] sq_array_p;
     delete sq;
     cout << *sq <<endl;
     
