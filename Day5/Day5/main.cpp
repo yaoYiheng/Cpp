@@ -102,7 +102,22 @@ void TestOne()
     st2 = st3;
     
 }
-
+void TestTwo()
+{
+    //    Sqrt s(10);
+    //    Sqrt w(10);
+    //    int value = w(10, 230);
+    //    cout << s;
+    //    cout << value << endl;
+    //
+    //    Sqrt *sq = new Sqrt(100);//等价于 sq->operator new(sizeof(A));
+    //
+    //    //等价于sq_array_p->operator new[](sizeof(Sqrt[20]));
+    //    Sqrt *sq_array_p = new Sqrt[10];
+    //    delete[] sq_array_p;
+    //    delete sq;
+    //    cout << *sq <<endl;
+}
 class Sqrt
 {
 private:
@@ -163,14 +178,51 @@ public:
             p = NULL;
         }
     }
-        void operator delete[](void *p)
+    void operator delete[](void *p)
+    {
+        if (p != NULL)
         {
-            if (p != NULL)
-            {
-                free(p);
-                p = NULL;
-            }
+            free(p);
+            p = NULL;
         }
+    }
+        
+    /**
+     &&操作符重载
+     */
+    bool operator&&(const Sqrt &sq)
+    {
+        if(this->a && sq.a)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    /**
+     ||操作符重载
+     */
+    bool operator||(const Sqrt &sq)
+    {
+        if(this->a || sq.a)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    Sqrt operator+(Sqrt &sq)
+    {
+        cout << "执行了+" <<endl;
+        Sqrt temp(this->a + sq.a);
+        
+        return temp;
+    }
 
     ~Sqrt()
     {
@@ -185,19 +237,22 @@ ostream &operator<<(ostream &os, const Sqrt &s)
 int main(int argc, const char * argv[]) {
     // insert code here...
 
-//    Sqrt s(10);
-//    Sqrt w(10);
-//    int value = w(10, 230);
-//    cout << s;
-//    cout << value << endl;
-//
-    Sqrt *sq = new Sqrt(100);//等价于 sq->operator new(sizeof(A));
-    
-    //等价于sq_array_p->operator new[](sizeof(Sqrt[20]));
-    Sqrt *sq_array_p = new Sqrt[10];
-    delete[] sq_array_p;
-    delete sq;
-    cout << *sq <<endl;
-    
+    Sqrt s1(0);
+    Sqrt s2(20);
+
+//    int a = 0;
+//    int b = 10;
+    //等价于s1.operator&&(s1.oprator+(s2))
+    //如果调用了+函数, 则说明没有进行短路, 与原始的&&操作不一样.
+    if(s1 && (s1+s2))
+    {
+        cout << "为真"<< endl;
+    }
+    else
+    {
+        cout << "假的" <<endl;
+    }
+
+
     return 0;
 }
