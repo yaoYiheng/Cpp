@@ -85,20 +85,62 @@ public:
     }
     
 };
-int main(int argc, const char * argv[]) {
-    // insert code here...
+
+void TestOne()
+{
     Student st1(1, "zhangsan");
     //拷贝构造. 会发生浅拷贝问题, 需要提供一个拷贝构造函数
     Student st2 = st1;
-
     Student st3(2, "lis5");
     
     /*
      默认情况下,会执行默认的赋值操作, 这样会造成st3与st2共同指向同一片地址, 从而造成
-      st2所指向的地址无法被回收, 后来st2新指向的空间被提前释放;
-        所以需要重新属性等号赋值操作符
+     st2所指向的地址无法被回收, 后来st2新指向的空间被提前释放;
+     所以需要重新属性等号赋值操作符
      */
     st2 = st3;
+    
+}
+
+class Sqrt
+{
+private:
+    int a;
+public:
+    Sqrt(int a)
+    {
+        this->a = a;
+    }
+    
+    //重写()操作符, 可以将一个对象, 当成一个普通函数来调用.
+    //称这种对象是仿函数, 伪函数
+    int operator()(int value)
+    {
+        return value * value;
+    }
+    
+    /**
+     函数重载 + ()操作符重载
+     */
+    int operator()(int value1, int value2)
+    {
+        return value1 * value2;
+    }
+    friend ostream &operator<<(ostream &os,const Sqrt &s);
+};
+ostream &operator<<(ostream &os, const Sqrt &s)
+{
+    os << s.a <<endl;
+    return os;
+}
+int main(int argc, const char * argv[]) {
+    // insert code here...
+
+    Sqrt s(10);
+    Sqrt w(10);
+    int value = w(10, 230);
+    cout << s;
+    cout << value;
     
     return 0;
 }
