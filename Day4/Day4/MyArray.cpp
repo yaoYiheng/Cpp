@@ -99,10 +99,11 @@ bool MyArray::operator==(const MyArray &array)
     }
     return false;
 }
-ostream &operator<<(ostream &os, MyArray &array)
+ostream &operator<<(ostream &os, const MyArray &array)
 {
     for (int i = 0; i < array.m_length; i++) {
-        os << array.m_space[i] << " ";
+//        os << array.m_space[i] << " ";
+        os << array[i] << " ";
     }
     return os;
 }
@@ -111,12 +112,12 @@ istream &operator>>(istream &is, MyArray &array)
     cout << "请输入"<<array.m_length<<"个数值" <<endl;
     for (int i = 0; i < array.m_length; i++)
     {
-        cin >> array.m_space[i];
+        cin >> array[i];
     }
     
     return is;
 }
-int& MyArray::operator[](int index)
+ int& MyArray::operator[](int index) const
 {
     return this->m_space[index];
 }
