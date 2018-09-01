@@ -7,6 +7,7 @@
 //
 
 #include <iostream>
+#include "MyString.hpp"
 using namespace std;
 
 class Student {
@@ -204,7 +205,7 @@ public:
 
     /**
      ||操作符重载
-     */
+    */
     bool operator||(const Sqrt &sq)
     {
         if(this->a || sq.a)
@@ -234,14 +235,14 @@ ostream &operator<<(ostream &os, const Sqrt &s)
     os << s.a <<endl;
     return os;
 }
-int main(int argc, const char * argv[]) {
-    // insert code here...
-
+void TestEight()
+{
+    
     Sqrt s1(0);
     Sqrt s2(20);
-
-//    int a = 0;
-//    int b = 10;
+    
+    //    int a = 0;
+    //    int b = 10;
     //等价于s1.operator&&(s1.oprator+(s2))
     //如果调用了+函数, 则说明没有进行短路, 与原始的&&操作不一样.
     if(s1 && (s1+s2))
@@ -253,6 +254,14 @@ int main(int argc, const char * argv[]) {
         cout << "假的" <<endl;
     }
 
+}
+int main(int argc, const char * argv[]) {
+    // insert code here...
+    
+    MyString s1("123");
+    cout <<s1 << endl;
+    s1 = "1234";
+    cout <<s1 << endl;
 
     return 0;
 }
