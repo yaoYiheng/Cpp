@@ -86,18 +86,21 @@ MyArray& MyArray::operator= (const MyArray &array)
 }
 bool MyArray::operator==(const MyArray &array)
 {
-    if (array.m_length >= 0)
+    if (this->m_length != array.m_length)
     {
-        if (this->m_length == array.m_length) {
-            for (int i = 0; i < array.m_length; i++) {
-                if(this->m_space[i] == array.m_space[i])
-                {
-                    return true;
-                }
-            }
+        return false;
+    }
+    
+    for (int i = 0; i < array.m_length; i++)
+    {
+        if (this->m_space[i] != array.m_space[i])
+        {
+            return false;
         }
     }
-    return false;
+    
+    return true;
+    
 }
 
 bool MyArray:: operator!=(const MyArray &array)
