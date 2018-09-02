@@ -141,7 +141,7 @@ MyString MyString::operator+(MyString &string)
 //重载<< >>
 ostream &operator<<(ostream &os, MyString &string)
 {
-
+ 
     os << string.str <<endl;
     return os;
 }
