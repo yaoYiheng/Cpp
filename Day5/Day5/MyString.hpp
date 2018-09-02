@@ -36,6 +36,8 @@ public:
     //重载=
     MyString& operator=(const MyString &str1);
     
+    //重载+操作,分析: 当两个类型的对象进行+运算后, 他们的返回值应该还是该对象.
+    MyString operator+(MyString &string);
     
 };
 

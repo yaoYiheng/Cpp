@@ -271,9 +271,15 @@ void TestTen()
 int main(int argc, const char * argv[]) {
     // insert code here...
     
-    MyString s1 = "126321";
-    MyString s2 = "125321";
+    string ss1("123");
+    string ss2 ("1234");
     
+    cout << ss1 + ss2;
+    MyString s1 = "123";
+    MyString s2 = "1234";
+   
+    //不知道为什么无法完成直接打印出相加后的结果, 而是需要通过第三个变量接受才能打印
+//    cout << s1 + s2;
     if(s1 == s2)
     {
         cout << "相等" <<endl;
@@ -283,6 +289,11 @@ int main(int argc, const char * argv[]) {
         cout << "不相等"<< endl;
         
     }
+    char nzArr[100] = "abcdef";
+    int nLen = strlen(nzArr);
+    int size = sizeof(nzArr);
     
+    cout << nLen << endl;
+    cout <<"size = "<< size<< endl;
     return 0;
 }

@@ -105,18 +105,38 @@ bool MyString::operator==(const MyString &mystring)
             return false;
         }
     }
-    //排除以上两种可能性,能来到这里就是相等的. 
+    //排除以上两种可能性,能来到这里就是相等的.
     return true;
 }
 bool MyString::operator!=(const MyString &mystring)
 {
-    return false;
+    return !(*this == mystring);
 }
 //重载[]
 char & MyString::operator[](int index)
 {
     //未做越界判断
     return this->str[index];
+}
+
+//重载+
+MyString MyString::operator+(MyString &string)
+{
+    //临时temp
+    MyString temp;
+    //计算新开辟的string的长度
+    int len = this->len + string.len;
+    temp.len = len;
+    temp.str = new char[len + 1];
+    
+    //清空temp之前的内存内容
+    
+    
+    //字符串拼接
+    strcpy(temp.str, this->str);
+    strcat(temp.str, string.str);
+    
+    return temp;
 }
 //重载<< >>
 ostream &operator<<(ostream &os, MyString &string)
