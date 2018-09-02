@@ -31,7 +31,8 @@ public:
     char & operator[](int index);
 
     //重载== !=
-    
+    bool operator==(const MyString &mystring);
+    bool operator!=(const MyString &mystring);
     //重载=
     MyString& operator=(const MyString &str1);
     

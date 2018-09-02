@@ -37,7 +37,7 @@ MyString::MyString(const char *str)
     else
     {
         this->len = (int)strlen(str);
-        this->str = new char(strlen(str) + 1);
+        this->str = new char[this->len + 1];
         strcpy(this->str, str);
     }
 }
@@ -45,7 +45,7 @@ MyString::MyString(const char *str)
 MyString::MyString(const MyString &newString)
 {
     this->len = newString.len;
-    this->str = new char(newString.len + 1);
+    this->str = new char[newString.len + 1];
     
     strcpy(this->str, newString.str);
     
@@ -74,7 +74,7 @@ MyString& MyString::operator=(const MyString &str1)
     //this之前指向的内存需要释放
     if (str1.str  != NULL)
     {
-        delete this->str;
+        delete[] this->str;
         this->str = NULL;
         this->len = 0;
     }
@@ -82,12 +82,41 @@ MyString& MyString::operator=(const MyString &str1)
     if (str1.len >= 0)
     {
         this->len = str1.len;
-        this->str = new char(str1.len + 1);
+        this->str = new char[str1.len + 1];
         strcpy(this->str, str1.str);
     }
     return *this;
     
     
+}
+//重载== !=
+bool MyString::operator==(const MyString &mystring)
+{
+    //如果两个字符串的长度不等, 那么不等
+    if (this->str != mystring.str)
+    {
+        return false;
+    }
+    //遍历每一个元素, 如果有元素不同, 则不相等
+    for (int i = 0;i < mystring.len; i++)
+    {
+        if (this->str[i] != mystring.str[i])
+        {
+            return false;
+        }
+    }
+    //排除以上两种可能性,能来到这里就是相等的. 
+    return true;
+}
+bool MyString::operator!=(const MyString &mystring)
+{
+    return false;
+}
+//重载[]
+char & MyString::operator[](int index)
+{
+    //未做越界判断
+    return this->str[index];
 }
 //重载<< >>
 ostream &operator<<(ostream &os, MyString &string)
@@ -98,6 +127,25 @@ ostream &operator<<(ostream &os, MyString &string)
 }
 istream &operator>>(istream &is, MyString &string)
 {
-    cin >> string.str;
+    cout<< "请输入:" <<endl;
+//    cin >> string.str;
+    //1. 清除之前的内存空间,
+    if (string.str != NULL)
+    {
+        delete[] string.str;
+        string.str = NULL;
+        string.len = 0;
+    }
+    
+    //2. 开辟临时空间, 保存传入的字符串, 在赋值
+    char temp[4096] = {0};
+    //往新开辟的空间内写入数据
+    cin >> temp;
+    
+    string.len = (int)strlen(temp);
+    //开辟与传入字符串相同长度的空间 + 1for \0
+    string.str = new char[strlen(temp) + 1];
+    strcpy(string.str, temp);
+
     return is;
 }

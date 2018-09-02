@@ -255,13 +255,34 @@ void TestEight()
     }
 
 }
-int main(int argc, const char * argv[]) {
-    // insert code here...
-    
+
+void TestTen()
+{
     MyString s1("123");
     cout <<s1 << endl;
     s1 = "1234";
     cout <<s1 << endl;
-
+    
+    //    cin >> s1;
+    
+    s1[2] = '2';
+    cout << s1;
+}
+int main(int argc, const char * argv[]) {
+    // insert code here...
+    
+    MyString s1 = "126321";
+    MyString s2 = "125321";
+    
+    if(s1 == s2)
+    {
+        cout << "相等" <<endl;
+    }
+    else
+    {
+        cout << "不相等"<< endl;
+        
+    }
+    
     return 0;
 }
