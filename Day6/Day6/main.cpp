@@ -132,10 +132,10 @@ void HumanEat(Human *human, string food)
 {
     human->eat(food);
 }
-int main(int argc, const char * argv[]) {
-    // insert code here...
-    std::cout << "Hello, World!\n";
 
+void TestOne()
+{
+    
     Male m("bob");
     Female h("hilary");
     LadyBoy l("ladybody");
@@ -143,5 +143,90 @@ int main(int argc, const char * argv[]) {
     HumanEat(&m, "香蕉");
     HumanEat(&h, "苹果");
     HumanEat(&l, "kiwi");
+}
+class A
+{
+public:
+    A()
+    {
+        cout << "A无参构造"<< endl;
+        this->p = new char[64];
+        memset(this->p, 0, 64);
+        strcpy(this->p, "A");
+    }
+    
+    virtual void info()
+    {
+        cout << "A" << this->p <<endl;
+    }
+    
+    /**
+     在父类的析构函数前加上virtual关键字以实现析构函数的多态, 当子类的析构函数被触发时,
+     就能达到析构父类的效果.
+     */
+    virtual ~A()
+    {
+        cout << "A析构" << endl;
+
+        if (this->p != NULL)
+        {
+            delete[] this->p;
+            this->p = NULL;
+        }
+    }
+private:
+    
+    char *p;
+};
+
+class B:public A
+{
+private:
+    char *p;
+    
+public:
+    B()//因为是继承自A类, 所以说在构造函数B触发时, 会先触发A的构造函数
+    {
+        cout << "B无参构造"<< endl;
+        this->p = new char[64];
+        memset(this->p, 0, 64);
+        strcpy(this->p, "B");
+    }
+    
+    void info()
+    {
+        cout << "B" << this->p <<endl;
+    }
+    ~B()
+    {
+        cout << "B析构" << endl;
+        if (this->p != NULL)
+        {
+            delete[] this->p;
+            this->p = NULL;
+        }
+    }
+};
+
+/**
+ 在这里发生了多台
+
+ @param ap 父类对象的指针
+ */
+void func(A *ap)
+{
+    ap->info();
+    delete ap;
+}
+int main(int argc, const char * argv[]) {
+    // insert code here...
+    std::cout << "Hello, World!\n";
+
+//    A aobj;
+//    A *a = new A;
+//    func(a);
+    B *bobj = new B;
+    func(bobj);
+//    B aobj;
     return 0;
 }
