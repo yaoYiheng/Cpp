@@ -70,7 +70,26 @@ public:
     }
 };
 
+class Male: virtual public Human
+{
+    
+};
 
+class Female: virtual public Human
+{
+    
+};
+
+class LadyBoy: public Male, public Female
+{
+    
+    
+public:
+    void info()
+    {
+        cout << name << endl;
+    }
+};
 int main(int argc, const char * argv[]) {
     // insert code here...
     std::cout << "Hello, World!\n";
