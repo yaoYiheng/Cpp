@@ -14,10 +14,18 @@ class Human
 {
 private:
     int love;
+    static int amout;
 protected:
     int money;
 public:
     string name;
+    
+    
+    
+    static int &getAmout()
+    {
+        return amout;
+    }
     Human()
     {
         
@@ -33,7 +41,8 @@ public:
         cout << "info" <<endl;
     }
 };
-class Student: protected Human
+int Human:: amout = 100;
+class Student: public Human
 {
 private:
     int id;
@@ -67,9 +76,11 @@ int main(int argc, const char * argv[]) {
     std::cout << "Hello, World!\n";
     
     
-    
-    
+    Human h1;
     Student s1;
+    cout << h1.getAmout();
+    cout << Human::getAmout();
+    cout << s1.getAmout();
 //    s1.info();
     return 0;
 }
