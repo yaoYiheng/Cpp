@@ -87,7 +87,7 @@ public:
     }
     void eat(string food)
     {
-        
+        cout << this->name << "吃了" << food << endl;
     }
 };
 
@@ -228,5 +228,7 @@ int main(int argc, const char * argv[]) {
     B *bobj = new B;
     func(bobj);
 //    B aobj;
+    
+    TestOne();
     return 0;
 }
