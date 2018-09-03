@@ -19,8 +19,15 @@ protected:
     int money;
 public:
     string name;
-    
-    
+
+    Human(string name)
+    {
+        this->name = name;
+    }
+    virtual void eat(string food)
+    {
+        cout << this->name << "吃了"<< food <<endl;
+    }
     
     static int &getAmout()
     {
@@ -72,34 +79,69 @@ public:
 
 class Male: virtual public Human
 {
-    
+public:
+    Male(){}
+    Male(string name)
+    {
+        this->name = name;
+    }
+    void eat(string food)
+    {
+        
+    }
 };
 
 class Female: virtual public Human
 {
-    
+
+public:
+    Female()
+    {
+        
+    }
+    Female(string name)
+    {
+        this->name = name;
+    }
+    void eat(string food)
+    {
+        
+    }
 };
 
 class LadyBoy: public Male, public Female
 {
+public:
+    LadyBoy(string name)
+    {
+        this->name = name;
+    }
     
-    
+    void eat(string food)
+    {
+        cout << this->name <<"吃了" << food << endl;
+    }
 public:
     void info()
     {
         cout << name << endl;
     }
 };
+
+void HumanEat(Human *human, string food)
+{
+    human->eat(food);
+}
 int main(int argc, const char * argv[]) {
     // insert code here...
     std::cout << "Hello, World!\n";
+
+    Male m("bob");
+    Female h("hilary");
+    LadyBoy l("ladybody");
     
-    
-    Human h1;
-    Student s1;
-    cout << h1.getAmout();
-    cout << Human::getAmout();
-    cout << s1.getAmout();
-//    s1.info();
+    HumanEat(&m, "香蕉");
+    HumanEat(&h, "苹果");
+    HumanEat(&l, "kiwi");
     return 0;
 }
