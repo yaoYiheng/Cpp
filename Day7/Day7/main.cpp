@@ -153,7 +153,9 @@ public:
         cout << "Son:: info a = " << a << endl;
     }
 };
-int main(int argc, const char * argv[]) {
+
+void TestTwo()
+{
     // insert code here...
     
     Son array[] = {Son(0), Son(1), Son(2)};
@@ -175,6 +177,84 @@ int main(int argc, const char * argv[]) {
     {
         cp->info();
     }
+    
+}
+//如果一个类中含有纯虚函数, 那么这个类就是抽象类, 抽象类是不能被实例化的.
+//继承了抽象类却没有实现纯虚函数的类也是抽象类
+class Shape
+{
+public:
+    virtual double getArea() = 0;
+};
+
+class Rect: public Shape
+{
+private:
+    int a;
+public:
+    Rect(int a)
+    {
+        this->a = a;
+    }
+    
+    double getArea()
+    {
+        return a * a;
+    }
+};
+
+class Circle: public Shape
+{
+private:
+    int r;
+    
+public:
+    Circle()
+    {
+        this->r = 0;
+    }
+    Circle(int r)
+    {
+        this->r = r;
+    }
+    double getArea()
+    {
+        return 3.14 * 2 * r;
+    }
+};
+
+class Triangle:public Shape
+{
+private:
+    int w;
+    int h;
+    
+public:
+    Triangle()
+    {
+        this->w = 0;
+        this->h = 0;
+    }
+    Triangle(int w, int h)
+    {
+        this->w = w;
+        this->h = h;
+    }
+    double getArea()
+    {
+        return 0.5 * w * h;
+    }
+};
+int main(int argc, const char * argv[]) {
+
+    Shape *sp1 = new Rect(10);
+    cout << "Rect的面积为:" << sp1->getArea() <<endl;
+    
+    Shape *sp2 = new Circle(12);
+    cout << "Circle的面积为:" << sp2->getArea() <<endl;
+    
+    Shape *sp3 = new Triangle(4, 5);
+    cout << "Triangle的面积为:" << sp3->getArea() <<endl;
     
     return 0;
 }
