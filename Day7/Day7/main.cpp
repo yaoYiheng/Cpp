@@ -116,12 +116,65 @@ void TestOne()
     pp->testInChild();// 指向子类对象的父类指针, 不能够调用子类中, 不存在与父类的函数.
     //如果想通过指向子类对象的父类指针调用在子类中与父类完全相同的函数, 则需要在父类中, 给那个函数添加virtual
 }
+
+class Father {
+   
+    
+private:
+public:
+    int a;
+    
+    
+    Father(){}
+    
+    Father(int a)
+    {
+        this->a = a;
+    }
+    
+    virtual void info()
+    {
+        cout << "Father:: info a = " << a << endl;
+    }
+};
+
+class Son:public Father
+{
+public:
+    int b;
+    int c;
+    Son():Father(){}
+    Son(int a):Father(a)
+    {
+        
+    }
+    void info()
+    {
+        cout << "Son:: info a = " << a << endl;
+    }
+};
 int main(int argc, const char * argv[]) {
     // insert code here...
     
-    Parent *cp = new Child(12, 23);
-
-
-    delete cp;
+    Son array[] = {Son(0), Son(1), Son(2)};
+    cout << "sizeof = "<< sizeof(array) << endl;
+    Father *fp = &array[0];
+    Son *cp = &array[0];
+    
+#if 0
+    fp->info();
+    cp->info();
+    fp++; //fp+sizeof(Parent)
+    cp++;//cp+sizeof(Child)
+    fp->info();
+    cp->info();
+#endif
+    
+    int i = 0;
+    for (cp = &array[0], i = 0; i< 3; i ++, cp++)
+    {
+        cp->info();
+    }
+    
     return 0;
 }
