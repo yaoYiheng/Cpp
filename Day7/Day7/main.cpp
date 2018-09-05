@@ -264,31 +264,65 @@ public:
     virtual void fight() = 0;
 };
 
-class NinJa:public Gangster
+class NinJa:virtual public Gangster
 {
     
 public:
-    void fight()
-    {
-        cout << "using NinJuTsu" <<endl;
-    }
+    virtual void useNingu() = 0;
+    
+//    void fight()
+//    {
+//        cout << "using NinJuTsu" <<endl;
+//    }
 };
 
-class Samurai:public Gangster
+class Samurai:virtual public Gangster
 {
     
 public:
+    virtual void useKnife() = 0;
+//    void fight()
+//    {
+//        cout << "使用武士刀" <<endl;
+//    }
+};
+class Killer: public NinJa, public Samurai
+{
+public:
     void fight()
     {
-        cout << "使用武士刀" <<endl;
+        cout << "AnSatsu" << endl;
+    }
+    void useNingu()
+    {
+        cout << "使用了忍具" << endl;
+    }
+    
+    void useKnife()
+    {
+        cout << "使用了武士刀" << endl;
     }
 };
-
 int main(int argc, const char * argv[]) {
 
-    Gangster *ganster = new Samurai;
+    //父类指针指向子类对象
+    Samurai *ganster = new Killer;
     
+    //可以通过父类指针, 调用子类中实现的虚函数的方法.
+    //该父类指针, 只能实现其自身的被继承的虚函数, 却无法实现由其他父类继承的虚函数
     ganster->fight();
+    ganster->useKnife();
     
+    NinJa *ganster1 = new Killer;
+    ganster1->fight();
+    ganster1->useNingu();
+    
+    //Base类, 指向孙子类.
+    //只能调用Base类中被孙子类实现的Base类中的纯虚函数.
+    //其他继承自该Base类的父类的纯虚函数, 也是无法调用的!
+    Gangster *ganster0 = new Killer;
+    ganster0->fight();
+//    ganster0->useKnife();
+//    ganster0->useNingu();
     return 0;
 }
