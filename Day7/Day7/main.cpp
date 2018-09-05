@@ -10,6 +10,8 @@
 #include "Animal.h"
 #include "Cat.hpp"
 #include "Dog.hpp"
+#include "Memeory.hpp"
+#include "Computer.hpp"
 using namespace std;
 
 /*
@@ -328,21 +330,40 @@ void TestFour()
     //    ganster0->useNingu();
     
 }
-int main(int argc, const char * argv[]) {
-    
+void TestFive()
+{
     Animal *animal = new Cat;
     animal->Howling();
     //架构函数
     makeAnimalHowl(animal);
-
+    
     Animal *animal1 = new Dog;
     animal1->Howling();
     
     //在makeAnimalHowl函数中, 已经完成了释放动作, 所以在此处就不需要再次释放;
-//    delete animal;
+    //    delete animal;
     delete animal1;
     cout <<"-----------------" <<endl;
     //也可以更简单的
     makeAnimalHowl(new Cat);
+}
+int main(int argc, const char * argv[]) {
+   
+//    Memeory memory("Kingston");
+//    CPU cpu("Intel");
+//    GPU gpu("NVida");
+    
+    CPU *cpu = new CPU("Intel");
+    GPU *gpu = new GPU("NVida");
+    Memeory *memory = new Memeory("Kinston");
+
+    Computer *computer = new Computer(cpu, gpu, memory);
+
+//    Computer *computer = new Computer(new CPU, new GPU,new Memeory);
+    
+    computer->work();
+    
+    delete computer;
+
     return 0;
 }

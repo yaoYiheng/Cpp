@@ -11,6 +11,13 @@
 		DB5CC0B0213F997E00237CD7 /* Cat.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DB5CC0AE213F997E00237CD7 /* Cat.cpp */; };
 		DB5CC0B3213F998500237CD7 /* Dog.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DB5CC0B1213F998500237CD7 /* Dog.cpp */; };
 		DB5CC0B5213FA1A500237CD7 /* Animal.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DB5CC0B4213FA1A500237CD7 /* Animal.cpp */; };
+		DB5CC0B8213FB21B00237CD7 /* Computer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DB5CC0B6213FB21B00237CD7 /* Computer.cpp */; };
+		DB5CC0BB213FB23700237CD7 /* CPU.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DB5CC0B9213FB23700237CD7 /* CPU.cpp */; };
+		DB5CC0BE213FB23E00237CD7 /* GPU.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DB5CC0BC213FB23E00237CD7 /* GPU.cpp */; };
+		DB5CC0C1213FB24700237CD7 /* Memeory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DB5CC0BF213FB24700237CD7 /* Memeory.cpp */; };
+		DB5CC0C4213FB37700237CD7 /* BaseMemory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DB5CC0C2213FB37700237CD7 /* BaseMemory.cpp */; };
+		DB5CC0C7213FC1E700237CD7 /* BaseGPU.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DB5CC0C5213FC1E700237CD7 /* BaseGPU.cpp */; };
+		DB5CC0CA213FC50400237CD7 /* BaseCPU.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DB5CC0C8213FC50400237CD7 /* BaseCPU.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -34,6 +41,20 @@
 		DB5CC0B1213F998500237CD7 /* Dog.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Dog.cpp; sourceTree = "<group>"; };
 		DB5CC0B2213F998500237CD7 /* Dog.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Dog.hpp; sourceTree = "<group>"; };
 		DB5CC0B4213FA1A500237CD7 /* Animal.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Animal.cpp; sourceTree = "<group>"; };
+		DB5CC0B6213FB21B00237CD7 /* Computer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Computer.cpp; sourceTree = "<group>"; };
+		DB5CC0B7213FB21B00237CD7 /* Computer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Computer.hpp; sourceTree = "<group>"; };
+		DB5CC0B9213FB23700237CD7 /* CPU.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = CPU.cpp; sourceTree = "<group>"; };
+		DB5CC0BA213FB23700237CD7 /* CPU.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = CPU.hpp; sourceTree = "<group>"; };
+		DB5CC0BC213FB23E00237CD7 /* GPU.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = GPU.cpp; sourceTree = "<group>"; };
+		DB5CC0BD213FB23E00237CD7 /* GPU.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = GPU.hpp; sourceTree = "<group>"; };
+		DB5CC0BF213FB24700237CD7 /* Memeory.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Memeory.cpp; sourceTree = "<group>"; };
+		DB5CC0C0213FB24700237CD7 /* Memeory.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Memeory.hpp; sourceTree = "<group>"; };
+		DB5CC0C2213FB37700237CD7 /* BaseMemory.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = BaseMemory.cpp; sourceTree = "<group>"; };
+		DB5CC0C3213FB37700237CD7 /* BaseMemory.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = BaseMemory.hpp; sourceTree = "<group>"; };
+		DB5CC0C5213FC1E700237CD7 /* BaseGPU.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = BaseGPU.cpp; sourceTree = "<group>"; };
+		DB5CC0C6213FC1E700237CD7 /* BaseGPU.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = BaseGPU.hpp; sourceTree = "<group>"; };
+		DB5CC0C8213FC50400237CD7 /* BaseCPU.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = BaseCPU.cpp; sourceTree = "<group>"; };
+		DB5CC0C9213FC50400237CD7 /* BaseCPU.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = BaseCPU.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +94,20 @@
 				DB5CC0AF213F997E00237CD7 /* Cat.hpp */,
 				DB5CC0B1213F998500237CD7 /* Dog.cpp */,
 				DB5CC0B2213F998500237CD7 /* Dog.hpp */,
+				DB5CC0B6213FB21B00237CD7 /* Computer.cpp */,
+				DB5CC0B7213FB21B00237CD7 /* Computer.hpp */,
+				DB5CC0B9213FB23700237CD7 /* CPU.cpp */,
+				DB5CC0BA213FB23700237CD7 /* CPU.hpp */,
+				DB5CC0C8213FC50400237CD7 /* BaseCPU.cpp */,
+				DB5CC0C9213FC50400237CD7 /* BaseCPU.hpp */,
+				DB5CC0BC213FB23E00237CD7 /* GPU.cpp */,
+				DB5CC0BD213FB23E00237CD7 /* GPU.hpp */,
+				DB5CC0C5213FC1E700237CD7 /* BaseGPU.cpp */,
+				DB5CC0C6213FC1E700237CD7 /* BaseGPU.hpp */,
+				DB5CC0BF213FB24700237CD7 /* Memeory.cpp */,
+				DB5CC0C0213FB24700237CD7 /* Memeory.hpp */,
+				DB5CC0C2213FB37700237CD7 /* BaseMemory.cpp */,
+				DB5CC0C3213FB37700237CD7 /* BaseMemory.hpp */,
 			);
 			path = Day7;
 			sourceTree = "<group>";
@@ -133,7 +168,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DB5CC0BB213FB23700237CD7 /* CPU.cpp in Sources */,
+				DB5CC0C7213FC1E700237CD7 /* BaseGPU.cpp in Sources */,
+				DB5CC0C4213FB37700237CD7 /* BaseMemory.cpp in Sources */,
+				DB5CC0BE213FB23E00237CD7 /* GPU.cpp in Sources */,
+				DB5CC0C1213FB24700237CD7 /* Memeory.cpp in Sources */,
+				DB5CC0B8213FB21B00237CD7 /* Computer.cpp in Sources */,
 				DB5CC0B3213F998500237CD7 /* Dog.cpp in Sources */,
+				DB5CC0CA213FC50400237CD7 /* BaseCPU.cpp in Sources */,
 				DB5CC0B5213FA1A500237CD7 /* Animal.cpp in Sources */,
 				DB5CC0B0213F997E00237CD7 /* Cat.cpp in Sources */,
 				DB4CBBFF213E5508005986BA /* main.cpp in Sources */,
