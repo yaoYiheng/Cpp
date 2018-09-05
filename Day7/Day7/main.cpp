@@ -7,6 +7,9 @@
 //
 
 #include <iostream>
+#include "Animal.h"
+#include "Cat.hpp"
+#include "Dog.hpp"
 using namespace std;
 
 /*
@@ -303,9 +306,8 @@ public:
         cout << "使用了武士刀" << endl;
     }
 };
-int main(int argc, const char * argv[]) {
-
-    //父类指针指向子类对象
+void TestFour()
+{    //父类指针指向子类对象
     Samurai *ganster = new Killer;
     
     //可以通过父类指针, 调用子类中实现的虚函数的方法.
@@ -322,7 +324,25 @@ int main(int argc, const char * argv[]) {
     //其他继承自该Base类的父类的纯虚函数, 也是无法调用的!
     Gangster *ganster0 = new Killer;
     ganster0->fight();
-//    ganster0->useKnife();
-//    ganster0->useNingu();
+    //    ganster0->useKnife();
+    //    ganster0->useNingu();
+    
+}
+int main(int argc, const char * argv[]) {
+    
+    Animal *animal = new Cat;
+    animal->Howling();
+    //架构函数
+    makeAnimalHowl(animal);
+
+    Animal *animal1 = new Dog;
+    animal1->Howling();
+    
+    //在makeAnimalHowl函数中, 已经完成了释放动作, 所以在此处就不需要再次释放;
+//    delete animal;
+    delete animal1;
+    cout <<"-----------------" <<endl;
+    //也可以更简单的
+    makeAnimalHowl(new Cat);
     return 0;
 }

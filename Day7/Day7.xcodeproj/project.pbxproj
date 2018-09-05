@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		DB4CBBFF213E5508005986BA /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DB4CBBFE213E5508005986BA /* main.cpp */; };
+		DB5CC0B0213F997E00237CD7 /* Cat.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DB5CC0AE213F997E00237CD7 /* Cat.cpp */; };
+		DB5CC0B3213F998500237CD7 /* Dog.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DB5CC0B1213F998500237CD7 /* Dog.cpp */; };
+		DB5CC0B5213FA1A500237CD7 /* Animal.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DB5CC0B4213FA1A500237CD7 /* Animal.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,6 +28,12 @@
 /* Begin PBXFileReference section */
 		DB4CBBFB213E5508005986BA /* Day7 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Day7; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB4CBBFE213E5508005986BA /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		DB5CC0AD213F98B100237CD7 /* Animal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Animal.h; sourceTree = "<group>"; };
+		DB5CC0AE213F997E00237CD7 /* Cat.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Cat.cpp; sourceTree = "<group>"; };
+		DB5CC0AF213F997E00237CD7 /* Cat.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Cat.hpp; sourceTree = "<group>"; };
+		DB5CC0B1213F998500237CD7 /* Dog.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Dog.cpp; sourceTree = "<group>"; };
+		DB5CC0B2213F998500237CD7 /* Dog.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Dog.hpp; sourceTree = "<group>"; };
+		DB5CC0B4213FA1A500237CD7 /* Animal.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Animal.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +67,12 @@
 			isa = PBXGroup;
 			children = (
 				DB4CBBFE213E5508005986BA /* main.cpp */,
+				DB5CC0AD213F98B100237CD7 /* Animal.h */,
+				DB5CC0B4213FA1A500237CD7 /* Animal.cpp */,
+				DB5CC0AE213F997E00237CD7 /* Cat.cpp */,
+				DB5CC0AF213F997E00237CD7 /* Cat.hpp */,
+				DB5CC0B1213F998500237CD7 /* Dog.cpp */,
+				DB5CC0B2213F998500237CD7 /* Dog.hpp */,
 			);
 			path = Day7;
 			sourceTree = "<group>";
@@ -118,6 +133,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DB5CC0B3213F998500237CD7 /* Dog.cpp in Sources */,
+				DB5CC0B5213FA1A500237CD7 /* Animal.cpp in Sources */,
+				DB5CC0B0213F997E00237CD7 /* Cat.cpp in Sources */,
 				DB4CBBFF213E5508005986BA /* main.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
