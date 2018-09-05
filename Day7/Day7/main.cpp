@@ -245,8 +245,9 @@ public:
         return 0.5 * w * h;
     }
 };
-int main(int argc, const char * argv[]) {
 
+void TestThree()
+{
     Shape *sp1 = new Rect(10);
     cout << "Rect的面积为:" << sp1->getArea() <<endl;
     
@@ -255,6 +256,39 @@ int main(int argc, const char * argv[]) {
     
     Shape *sp3 = new Triangle(4, 5);
     cout << "Triangle的面积为:" << sp3->getArea() <<endl;
+    
+}
+
+class Gangster {
+public:
+    virtual void fight() = 0;
+};
+
+class NinJa:public Gangster
+{
+    
+public:
+    void fight()
+    {
+        cout << "using NinJuTsu" <<endl;
+    }
+};
+
+class Samurai:public Gangster
+{
+    
+public:
+    void fight()
+    {
+        cout << "使用武士刀" <<endl;
+    }
+};
+
+int main(int argc, const char * argv[]) {
+
+    Gangster *ganster = new Samurai;
+    
+    ganster->fight();
     
     return 0;
 }
