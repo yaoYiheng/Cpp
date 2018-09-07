@@ -15,9 +15,9 @@ typedef int(Array_Int_10)[10];
 
 //方法二: 定义了一种名为Array_Int_10_P, 指向1-个int数组的指针数据类型
 typedef int(* Array_Int_10_P)[10];
-int main(int argc, const char * argv[]) {
-    // insert code here...
-    std::cout << "Hello, World!\n";
+
+void testOne()
+{
     
     int array[10] = {1,2,3,4,5,6,7,8,9,0};
     
@@ -44,7 +44,7 @@ int main(int argc, const char * argv[]) {
     }
     
     cout << endl;
- 
+    
     
     //方式三: 直接定义数组类型的指针
     int(*p)[10];
@@ -58,5 +58,40 @@ int main(int argc, const char * argv[]) {
     cout << endl;
     
     
+}
+
+int funcOne(int a, int b){
+    return a + b;
+}
+int funcTwo(int a, int b){
+    return a - b;
+}
+int funcThree(int a, int b){
+    return a * b;
+}
+int funcFour(int a, int b){
+    return a / b;
+}
+//定义一个统一的接口, 将他们全部调用起来 
+void executeFun(int(*p)(int, int), int a, int b)
+{
+    cout <<  p(a, b) << endl;
+}
+//定义一种返回值为int, 并接受两个int参数的函数
+typedef int(FUNC) (int, int);
+int main(int argc, const char * argv[]) {
+    // insert code here...
+    std::cout << "Hello, World!\n";
+    FUNC *fp = NULL;
+    
+    
+    fp = funcOne;
+//    cout << fp(10, 20) << endl;
+    
+    int(*fp3)(int, int);
+    
+    fp3 = funcOne;
+    
+    executeFun(funcThree, 10, 20);
     return 0;
 }
