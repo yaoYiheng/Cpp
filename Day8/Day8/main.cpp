@@ -72,26 +72,78 @@ int funcThree(int a, int b){
 int funcFour(int a, int b){
     return a / b;
 }
-//定义一个统一的接口, 将他们全部调用起来 
+//定义一个统一的接口, 将他们全部调用起来
 void executeFun(int(*p)(int, int), int a, int b)
 {
     cout <<  p(a, b) << endl;
 }
 //定义一种返回值为int, 并接受两个int参数的函数
 typedef int(FUNC) (int, int);
+//定义函数指针
+typedef void(Tip) (void);
+//定义结构体
+typedef struct Tips
+{
+    char from[64];
+    char to[64];
+    Tip *tp;
+} TIP;
+
+
+void tipOne()
+{
+    cout << "拜见.." <<endl;
+}
+void tipTwo()
+{
+    cout << "说谎.." <<endl;
+}
+void tipThree()
+{
+    cout << "跑.." <<endl;
+}
+
+void useTip(TIP *tip)
+{
+    cout << "这是"<<tip->from << "给" <<tip->to<<"的锦囊"<<endl;
+    //
+    tip->tp();
+}
+
+TIP *creat(char *from, char *to, Tip *tip)
+{
+    TIP *temp = (TIP *)malloc(sizeof(TIP));
+    
+    if (temp == NULL)
+    {
+        return NULL;
+    }
+    
+    strcpy(temp->from, from);
+    strcpy(temp->to, to);
+    temp->tp = tip;
+    
+    return temp;
+}
+void deleteTip(TIP *tip)
+{
+    if (tip != NULL)
+    {
+        free(tip);
+        tip = NULL;
+    }
+}
+
 int main(int argc, const char * argv[]) {
     // insert code here...
-    std::cout << "Hello, World!\n";
-    FUNC *fp = NULL;
+    
+    TIP *tip1 = creat("诸葛亮", "赵云", tipOne);
     
     
-    fp = funcOne;
-//    cout << fp(10, 20) << endl;
+    useTip(tip1);
     
-    int(*fp3)(int, int);
     
-    fp3 = funcOne;
+    deleteTip(tip1);
     
-    executeFun(funcThree, 10, 20);
     return 0;
 }
