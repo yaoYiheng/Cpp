@@ -42,21 +42,87 @@ int myAdd(int a, int b)
 {
     return a + b;
 }
-int main(int argc, const char * argv[]) {
+
+void TestOne()
+{
     // insert code here...
     std::cout << "Hello, World!\n";
     
-//    string a = "123";
-//    string b = "1111";
-//
-//    mySwap(a, b);
-//
-//    info(a, b);
+    //    string a = "123";
+    //    string b = "1111";
+    //
+    //    mySwap(a, b);
+    //
+    //    info(a, b);
     int a = 10;
     int b = 11;
-
+    
     cout << myAdd<>(a, b) << endl;
     
     
+}
+
+template <class T>
+
+/**
+ 冒泡排序, 升序
+
+ @param target 给定数组
+ @param len 数组长度
+ */
+void sort(T *target, int len)
+{
+    for (int i = 0; i < len; i++)
+    {
+        for (int j = i + 1; j < len; j++)
+        {
+            //
+            if (target[i] > target[j])
+            {
+                T temp = target[i];
+                target[i] = target[j];
+                target[j] = temp;
+            }
+        }
+    }
+}
+template <class T>
+void info(T *target, int len)
+{
+    for (int i = 0; i < len; i++)
+    {
+        cout << target[i] << " ";
+    }
+}
+
+
+int main(int argc, const char * argv[]) {
+
+    
+    char mychar[] = {'z','a', 'g','c', 'p', 't', 'w','b'};
+    
+    int len = sizeof(mychar) / sizeof(char);
+    
+    cout << "原数组: " <<endl;
+    
+    info(mychar, len);
+    
+    
+    cout <<  endl;
+    sort(mychar, len);
+    
+    cout << "冒泡后: " <<endl;
+    
+    info(mychar, len);
+    cout << endl;
+    
+    int myArray[] = {12, 32, 100, -1, 31, 0};
+    
+    int arrLen = sizeof(myArray) / sizeof(int);
+    
+    sort(myArray, arrLen);
+    
+    info(myArray, arrLen);
+    cout << endl;
     return 0;
 }
