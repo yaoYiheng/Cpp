@@ -86,6 +86,7 @@ void sort(T *target, int len)
         }
     }
 }
+
 template <class T>
 void info(T *target, int len)
 {
@@ -96,8 +97,8 @@ void info(T *target, int len)
 }
 
 
-int main(int argc, const char * argv[]) {
-
+void TestTwo()
+{
     
     char mychar[] = {'z','a', 'g','c', 'p', 't', 'w','b'};
     
@@ -124,5 +125,28 @@ int main(int argc, const char * argv[]) {
     
     info(myArray, arrLen);
     cout << endl;
+    
+}
+
+
+int main(int argc, const char * argv[]) {
+
+    string line;
+    //getline()函数只要一遇到换行符就结束读取操作并返回结果.
+    while (getline(cin, line))
+    {
+        //遇到空行跳过.
+        if(!line.empty())
+        {
+            cout << line << endl;
+        }
+        
+        //每次读入一整行, 输出其中超过80个字符的行
+        if (line.size() > 80)
+        {
+            cout << line << endl;
+        }
+    }
+
     return 0;
 }
