@@ -8,6 +8,7 @@
 
 #include <iostream>
 #include <cctype>
+#include <vector>
 using namespace std;
 
 void practise3_2()
@@ -217,6 +218,105 @@ void pratise3_11()
     cout << temp <<endl;
 }
 
+/**
+ 分布情况.
+ */
+void pratcize1()
+{
+    vector<unsigned> scores(11, 0);
+    unsigned grade;
+    
+    cout << "请输入分数:" << endl;
+    
+    while (cin >> grade)
+    {
+        if (grade <= 100)
+        {
+            auto index = grade / 10;
+            scores[index] = scores[index] + 1;
+        }
+    }
+    
+    cout << "分布情况为: "<<endl;
+    
+    for (auto ver : scores)
+    {
+        cout << ver << endl;
+    }
+}
+
+/**
+ 向vector中输入整数
+ */
+void practise3_14()
+{
+    int temp;
+    
+    vector<int> vecInt;
+    
+    char cont = 'y';
+    
+    cout << "请输入一个整数:"<< endl;
+    
+    while (cin >> temp)
+    {
+        vecInt.push_back(temp);
+        
+        cout << "是否继续(y or n)" <<endl;
+        cin >> cont;
+        
+        if (cont != 'y' && cont != 'Y')
+        {
+            break;
+        }
+        
+        cout << "请输入:" <<endl;
+        
+    }
+    
+    for (auto index: vecInt)
+    {
+        cout << index << " ";
+    }
+}
+/**
+ 将输入的单词变为大写.
+ */
+void practise3_17()
+{
+    string temp;
+    vector<string> text;
+    char cont = 'y';
+    
+    while (cin >> temp)
+    {
+        text.push_back(temp);
+        
+        cout << "是否继续(y or n)"<<endl;
+        cin >> cont;
+        if (cont == 'y' || cont == 'Y')
+        {
+            cout << "请输入下一个:"<<endl;
+        }
+        else
+        {
+            break;
+        }
+    }
+    
+    //变量vector中的每一个字符串
+    for (auto &ch : text)
+    {
+        //遍历每个字符串中的每个字符
+        for (auto &bite : ch)
+        {
+            bite = toupper(bite);//将其大写后并返回.
+        }
+        
+        cout << ch << endl;
+    }
+    
+}
 int main(int argc, const char * argv[]) {
     // insert code here...
     
@@ -231,6 +331,13 @@ int main(int argc, const char * argv[]) {
 //    pracise3_7();
     
 //    practise3_8();
-    practise3_10();
+    
+//    practise3_10();
+    
+//    pratcize1();
+    
+    practise3_14();
+//    practise3_17();
+
     return 0;
 }
