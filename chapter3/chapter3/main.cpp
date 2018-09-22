@@ -244,7 +244,27 @@ void pratcize1()
         cout << ver << endl;
     }
 }
-
+void pratcize2()
+{
+    //通过迭代器输出一个vector<int>
+    vector<int> vetInt(10, 1);
+    
+    for (auto it = vetInt.begin(); it != vetInt.end(); ++it)
+    {
+        cout << *it << " ";
+    }
+    cout <<endl;
+    
+    
+    //通过迭代器修改字符串大小写.
+    string str("hello world");
+    
+    for (auto it = str.begin(); it != str.end() && !isspace(*it); ++it)
+    {
+        *it = toupper(*it);
+    }
+    cout << str<<endl;
+}
 /**
  向vector中输入整数
  */
@@ -317,6 +337,101 @@ void practise3_17()
     }
     
 }
+
+/**
+ 输入一段文字, 将其改变为大写.
+ */
+void practise3_22()
+{
+    vector<string> text;
+    string temp;
+    
+    while (getline(cin, temp))
+    {
+        text.push_back(temp);
+    }
+    
+    for (auto it = text.begin(); it != text.end() && !it->empty(); ++it)
+    {
+        for (auto it2 = it->begin(); it2 != it->end(); ++it2)
+        {
+            *it2 = toupper(*it2);
+        }
+        
+        cout << *it << endl;
+    }
+    
+    
+}
+
+/**
+ 读入一组整数, 并把他们存放入一个vector对象, 将每对相邻整数的和输出.
+ 修改程序, 收尾相加.
+ */
+void practise3_20()
+{
+    int temp;
+    vector<int> intVec;
+    
+    cout << "请输入一组整数: " << endl;
+    
+    while (cin >> temp)
+    {
+        intVec.push_back(temp);
+    }
+    
+    decltype(intVec.size()) vecSize = intVec.size();
+
+    //因为递增两是每次+2, 为了保证最后的下标不越界, 所以 index 需要小于长度 - 1;
+    for (decltype(intVec.size()) index = 0; index < vecSize - 1; index += 2)
+    {
+
+        //计算相邻的元素的和
+        cout << "相邻元素和为: " << intVec[index] + intVec[index + 1] << endl;
+        
+    }
+    if (vecSize % 2 != 0)
+    {
+        cout << "最后一个元素不参与相加, 结果为: "<< intVec[vecSize - 1] <<endl;
+    }
+#if 0
+    if (vecSize % 2 == 1)
+    {
+        
+        cout << "中间的数不参与计算, 其结果为: "<<intVec[vecSize / 2]<<endl ;
+    }
+    else
+    {
+        cout << "正好可以收尾相加没有数剩下" << endl;
+        cout << "头尾相加结果为:"<<endl;
+        
+        auto mid = vecSize / 2;
+        
+        for (decltype(intVec.size()) index = 0; index < vecSize; ++index )
+        {
+            
+            if (index == mid)
+            {
+                break;
+            }
+            cout << intVec[index] + intVec[vecSize - 1 - index] <<endl;
+
+        }
+    }
+#endif
+    for (decltype(intVec.size()) index = 0; index < vecSize / 2; ++index )
+    {
+
+        cout <<"收尾相加为: "<< intVec[index] + intVec[vecSize - 1 - index] <<endl;
+        
+    }
+    if (vecSize % 2 != 0)
+    {
+        cout << "中间的数不参与计算, 其结果为: "<<intVec[vecSize / 2]<<endl ;
+    }
+}
+
+
 int main(int argc, const char * argv[]) {
     // insert code here...
     
@@ -336,8 +451,13 @@ int main(int argc, const char * argv[]) {
     
 //    pratcize1();
     
-    practise3_14();
+//    practise3_14();
 //    practise3_17();
+    
+    practise3_20();
+    
+//    practise3_22();
+
 
     return 0;
 }
