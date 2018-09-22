@@ -9,6 +9,8 @@
 #include <iostream>
 #include <cctype>
 #include <vector>
+#include <ctime>
+#include <cstdlib>
 using namespace std;
 
 void practise3_2()
@@ -431,7 +433,40 @@ void practise3_20()
     }
 }
 
-
+void practise3_23()
+{
+    vector<int>vecInt(10, 20);
+    
+    for (auto b = vecInt.begin(); b != vecInt.end(); b++)
+    {
+        *b *= 2;
+        cout << *b <<" " ;
+    }
+    cout << endl;
+    
+    vector<int>randomVec;
+    //生成随机数种子
+    srand((unsigned) time(NULL));
+    
+    //装入容器中
+    for (int i = 0; i < 10; i++)
+    {
+        //随机生成1000内的随即数
+        randomVec.push_back(rand() % 1000);
+    }
+    cout <<"生成的随机数为: ";
+    for (auto b = randomVec.begin(); b != randomVec.end(); b++)
+    {
+        cout << *b << " ";
+    }
+    
+    cout << "翻倍后的随机数为: ";
+    for (auto b = randomVec.begin(); b != randomVec.end(); b++)
+    {
+        cout << *b * 2 << " ";
+    }
+    cout << endl;
+}
 int main(int argc, const char * argv[]) {
     // insert code here...
     
@@ -454,9 +489,11 @@ int main(int argc, const char * argv[]) {
 //    practise3_14();
 //    practise3_17();
     
-    practise3_20();
+//    practise3_20();
     
 //    practise3_22();
+    
+    practise3_23();
 
 
     return 0;
