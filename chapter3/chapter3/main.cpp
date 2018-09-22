@@ -467,6 +467,45 @@ void practise3_23()
     }
     cout << endl;
 }
+
+/**
+ <#Description#>
+ */
+void practise3_24()
+{
+    vector<unsigned>scoreVec(11);
+    
+    auto it = scoreVec.begin();
+    
+    int temp;
+    
+    cout << "请输入一组分数:"<<endl;
+    
+    while (cin >> temp)
+    {
+        if (temp < 101)//限制无效输入
+        {
+            /*等价于
+             auto index = temp / 10;
+             *(it + index) = *(it + index) + 1;
+             */
+            ++*(it + temp / 10);
+
+        }
+    }
+    cout << "总计输入" << scoreVec.size()<<"个成绩" << endl;
+    cout << "从低到高分数分布:"<<endl;
+    
+    for (; it != scoreVec.end(); it++)
+    {
+        cout << *it<< " ";
+    }
+    
+    vector<int> s{1,22,32,42,52,62,72};
+    auto iit = s.begin();
+    //迭代器与整数n相加, 移动迭代器向前 移动 n个单位
+    cout << *(iit + 6)<<endl;
+}
 int main(int argc, const char * argv[]) {
     // insert code here...
     
@@ -493,8 +532,14 @@ int main(int argc, const char * argv[]) {
     
 //    practise3_22();
     
-    practise3_23();
+//    practise3_23();
+    
+//    practise3_24();
 
+   
+    
+    
+    
 
     return 0;
 }
