@@ -8,8 +8,45 @@
 
 #include <iostream>
 #include "chapter6.h"
-
+#include <initializer_list>
 using namespace std;
+
+
+/**
+ 计算列表中所有元素的和
+
+ @param il <#il description#>
+ */
+void practise6_27(initializer_list<int> il)
+{
+    int result = 0;
+    for (auto beg = il.begin(); beg != il.end(); ++beg)
+    {
+        result += *beg;
+    }
+    
+    
+    cout << result << endl;
+}
+
+/*
+ 可以按照以下的顺序来逐层理解该声明的含义:
+ * func(int i) 表示调用名为func的函数时, 需要一个int类型的实参
+ * (*func(int i))意味着我们可以对函数调用的结果执行解引用操作
+ * (*func(int i))[10]表示解引用func的调用将得到一个大小是10的数组
+ * int (*fun(int i))[10]表示数组中的元素是int类型.
+ */
+int (*func(int i))[10];
+
+
+/**
+ 使用尾置返回类型
+ 为了边上函数真正的返回类型跟在形参列表之后, 我们在本应该出现返回类型的地方放置一个auto
+
+ @param i int类型的实参
+ @return 返回一个指针, 该指针指向含有10个整数的数组.
+ */
+auto func1(int i) -> int(*)[10];
 
 int main(int argc, const char * argv[]) {
     
@@ -29,13 +66,22 @@ int main(int argc, const char * argv[]) {
 //        cout <<practise6_7()<<endl;
 //    }
 
-    string temp;
-
-    cin >>temp;
-
-    changeToLower(temp);
+//    string temp;
+//
+//    cin >>temp;
+//
+//    changeToLower(temp);
+//
+    
+    
+    initializer_list<int> lst{1,2,3};
+    
+    practise6_27(lst);
+    
+    
     
     return 0;
+    
 }
 
 
