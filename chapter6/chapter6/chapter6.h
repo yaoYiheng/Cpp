@@ -51,4 +51,14 @@ bool hasUpper(const std::string &s);
  @param s <#s description#>
  */
 void changeToLower(std::string &s);
+
+
+/**
+ 返回较短string对象
+
+ @param s1 <#s1 description#>
+ @param s2 <#s2 description#>
+ @return <#return value description#>
+ */
+const std::string & shorterString(const std::string &s1, const std::string &s2);
 #endif /* chapter6_h */

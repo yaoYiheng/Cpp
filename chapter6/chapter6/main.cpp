@@ -89,6 +89,14 @@ string mtStr[10];
 //使用decltype关键字
 decltype(mtStr) &practise6_37_3();
 
+
+/**
+ 测试用
+ */
+void myPrint(const char *cp);
+
+//返回长度较小的string对象
+
 int main(int argc, const char * argv[]) {
     
     
@@ -121,10 +129,38 @@ int main(int argc, const char * argv[]) {
     
     
     
+    
     return 0;
     
 }
 
+//我们可以对两个非畅想的string实参调用这个函数, 但返回的结果仍然是const string的引用
+const string & shorterString(const string &s1, const string &s2)
+{
+    return s1.size() < s2.size() ? s1 : s2;
+}
+
+
+/**
+ 接上:
+ 因此我们需要一种的新的函数, 当它的实参不是常量时, 得到的结果是一个普通的引用,
+ 使用const_cast<>()可以做到
+
+ @param s1 非常量的引用
+ @param s2 同上
+ @return 返回普通引用.
+ */
+string &shorterStr(string &s1, string &s2)
+{
+    //首先将他的实参,强制转化成对const的引用, 然后调动const版本, 返回了一个const string的引用.
+    //该引用事实上绑定在了某个初始的非常量的实参上
+    //因此, 我们可以再将其转换回一个普通的string &.
+    auto &r = shorterString(const_cast<const string&>(s1),
+                            const_cast<const string &>(s2));
+    
+    
+    return const_cast<string&>(r);
+}
 
 /**
  for循环实现阶乘
