@@ -48,6 +48,47 @@ int (*func(int i))[10];
  */
 auto func1(int i) -> int(*)[10];
 
+
+
+//编写一个函数的声明, 使其返回数组的引用并且该数组包含10个string对象
+/*
+    practise6_36()表示函数无任何实参,
+    (&practise6_36())表示函数的返回结果是一个引用
+    (&practise6_36())[10]表示引用对象是一个维度为10的数组.
+     string (&practise6_36 ())[10] 表示数组的元素是string对象
+ */
+string (&practise6_36())[10];
+
+
+
+
+//定义类型的别名. 将类型为string, 大小为10的数组, 定义名为myString类型
+typedef string myString[10];
+
+/**
+
+方式一
+ @return  返回数组的引用并且该数组包含10个string对象
+ */
+myString &practise6_37_1();
+
+
+/**
+ 方法二
+
+无参数
+ @return 使用尾置返回类型
+ */
+auto practise6_37_2() -> string (&)[10];
+
+
+
+
+string mtStr[10];
+//方式三
+//使用decltype关键字
+decltype(mtStr) &practise6_37_3();
+
 int main(int argc, const char * argv[]) {
     
     
