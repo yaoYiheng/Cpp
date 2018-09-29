@@ -10,7 +10,7 @@
 #include "chapter6.h"
 #include <initializer_list>
 #include <vector>
-#define NDEBUG 
+#define NDEBUG
 using namespace std;
 
 
@@ -101,6 +101,36 @@ void myPrint(const char *cp);
 
 void practise6_33(vector<int> vInt, unsigned index);
 
+bool compareLength(const string &s1, const string &s2);
+
+typedef bool Func(const string &, const string &);
+//使用关键字decltype推断compareLength的类型，将这种类型起别名为Func2，与上一条声明等价。
+typedef decltype(compareLength) Func2;
+
+/**
+ 传入两个字符串， 使用第三个参数（函数指针）对输入的两个字符串进行长度的比较， 输出较长的字符串
+
+ @param s1 字符串1
+ @param s2 字符串2
+ @param ss 名为pf，指向一个返回值为bool， 接受两个const string对象的函数。
+ */
+void useBigger(const string &s1, const string & s2, Func ss)
+{
+    if (ss(s1, s2))
+    {
+        cout << s1<<endl;
+    }
+    else
+    {
+        cout << s2 << endl;
+    }
+}
+
+bool compareLength(const string &s1, const string &s2)
+{
+    return s1.size() > s2.size() ? true : false;
+}
+
 int main(int argc, const char * argv[]) {
     
     
@@ -130,10 +160,15 @@ int main(int argc, const char * argv[]) {
 //    initializer_list<int> lst{1,2,3};
     
 //    practise6_27(lst);
-    vector<int> vint{1,23,4,5,6,7,8};
-    practise6_33(vint, 0);
+//    vector<int> vint{1,23,4,5,6,7,8};
+//    practise6_33(vint, 0);
     
+    string s1, s2;
     
+    s1 = "Hello";
+    s2 = "Morr";
+    
+    useBigger(s1, s2, compareLength);
     
     
     return 0;
