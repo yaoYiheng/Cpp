@@ -131,6 +131,47 @@ bool compareLength(const string &s1, const string &s2)
     return s1.size() > s2.size() ? true : false;
 }
 
+int practise6_54(int, int);
+
+typedef int praType(const int&,const int&);
+
+
+int add(const int &a, const int &b)
+{
+    return a + b;
+}
+int sub(const int &a, const int &b)
+{
+    return a - b;
+}
+int times(const int &a, const int &b)
+{
+    return a * b;
+}
+int de(const int &a, const int &b)
+{
+    //判断除数是否为0；
+    try
+    {
+        if (b == 0)
+        {
+            throw runtime_error("除数不能为0");
+        }
+    }
+    catch (runtime_error err)
+    {
+        cout <<err.what()
+        <<"\n重新输入非零除数"<< endl;
+        
+        int temp;
+        
+        cin >> temp;
+        
+        return a /temp;
+    }
+    
+    return a / b;
+}
 int main(int argc, const char * argv[]) {
     
     
@@ -162,14 +203,26 @@ int main(int argc, const char * argv[]) {
 //    practise6_27(lst);
 //    vector<int> vint{1,23,4,5,6,7,8};
 //    practise6_33(vint, 0);
+//
+//    string s1, s2;
+//
+//    s1 = "Hello";
+//    s2 = "Morr";
+//
+//    useBigger(s1, s2, compareLength);
+
     
-    string s1, s2;
+    praType *addP = add, *subP = sub, *timeP = times, *deP = de;
     
-    s1 = "Hello";
-    s2 = "Morr";
+    //该vector对象是用来装载指向pVec这种类型的函数的指针。
+    vector<praType *> pVec{addP, subP, timeP, deP};
     
-    useBigger(s1, s2, compareLength);
+    int a = 100, b = 0;
     
+    for (auto ppVec : pVec)//遍历容器中的每一个函数指针，并调用计算。
+    {
+        cout << ppVec(a, b) << endl;
+    }
     
     return 0;
     
