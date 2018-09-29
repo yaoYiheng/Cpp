@@ -61,4 +61,6 @@ void changeToLower(std::string &s);
  @return <#return value description#>
  */
 const std::string & shorterString(const std::string &s1, const std::string &s2);
+
+
 #endif /* chapter6_h */

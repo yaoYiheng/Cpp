@@ -9,6 +9,8 @@
 #include <iostream>
 #include "chapter6.h"
 #include <initializer_list>
+#include <vector>
+#define NDEBUG 
 using namespace std;
 
 
@@ -97,6 +99,8 @@ void myPrint(const char *cp);
 
 //返回长度较小的string对象
 
+void practise6_33(vector<int> vInt, unsigned index);
+
 int main(int argc, const char * argv[]) {
     
     
@@ -123,9 +127,11 @@ int main(int argc, const char * argv[]) {
 //
     
     
-    initializer_list<int> lst{1,2,3};
+//    initializer_list<int> lst{1,2,3};
     
-    practise6_27(lst);
+//    practise6_27(lst);
+    vector<int> vint{1,23,4,5,6,7,8};
+    practise6_33(vint, 0);
     
     
     
@@ -181,6 +187,48 @@ int fact(int value)
     }
     
     return result;
+}
+
+
+/**
+ 递归实现阶乘。
+ 
+确实很简洁， 但是不会写。
+ @param value <#value description#>
+ @return <#return value description#>
+ */
+int factorial(int value)
+{
+    if (value < 0)
+    {
+        return 1;
+    }
+    
+    return factorial(value - 1) * value;
+}
+
+
+/**
+ 使用递归输出vector
+
+ @param vInt <#vInt description#>
+ @param index <#index description#>
+ */
+void practise6_33(vector<int> vInt, unsigned index)
+{
+    auto size = vInt.size();
+    
+#ifndef NDEBUG
+    
+    cout << "vector对象的大小是："<<size<<endl;
+#endif //NDEBUG
+    
+    //如果对象不为空，且index小于size
+    if (!vInt.empty() && index < size)
+    {
+        cout << vInt[index] << endl;
+        practise6_33(vInt, index + 1);
+    }
 }
 
 /**
