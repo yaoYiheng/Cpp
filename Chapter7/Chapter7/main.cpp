@@ -9,6 +9,8 @@
 #include <iostream>
 #include "Person.hpp"
 #include "Screen.hpp"
+#include "WindowManger.hpp"
+
 using namespace std;
 class Y;
 
@@ -26,11 +28,15 @@ int main(int argc, const char * argv[]) {
     // insert code here...
     
 
-    Screen myScreen(5, 5,'X');
-    myScreen.move(4, 0).set('#').display(cout);
-    cout << "\n";
-    myScreen.display(cout);
-    cout << "\n";
+//    Screen myScreen(5, 5,'X');
+//    myScreen.move(4, 0).set('#').display(cout);
+//    cout << "\n";
+//    myScreen.display(cout);
+//    cout << "\n";
 
+    WindowManger w;
+    w.clear(0);
+    
+    
     return 0;
 }

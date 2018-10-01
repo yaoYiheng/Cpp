@@ -64,6 +64,8 @@ public:
     
     Screen& display(){std::cout << contents; return *this;}
     
+    
+    pos size() const;
 private:
     //定义为私有成员，有它负责打印的实际工作，所有的display函数都会调用这个
     void do_display(std::ostream &os) const {os << contents;}

@@ -41,3 +41,7 @@ Screen &Screen::set(unsigned row, unsigned col, char ch)
     return *this;
 }
 
+Screen::pos Screen::size() const
+{
+    return height * width;
+}

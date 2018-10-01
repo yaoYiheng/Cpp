@@ -20,10 +20,12 @@ class WindowManger {
 private:
     
     using ScreenIndex = std::vector<Screen>::size_type;
+    //默认情况下，该类开始时总是拥有一个默认初始化的screen。
     std::vector<Screen> screens{Screen(24, 80, ' ')};
 
 public:
     void clear(ScreenIndex);
+    ScreenIndex addScreen(const Screen& screen); //添加一个新的屏幕并返回该屏幕的索引index
     
 };
 #endif /* WindowManger_hpp */
