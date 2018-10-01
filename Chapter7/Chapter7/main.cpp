@@ -8,16 +8,17 @@
 
 #include <iostream>
 #include "Person.hpp"
-
+#include "Screen.hpp"
 using namespace std;
 int main(int argc, const char * argv[]) {
     // insert code here...
     
-    
-    
-    string s1(10, 'c');
-    
-    cout << s1 << endl;
-    
+
+    Screen myScreen(5, 5,'X');
+    myScreen.move(4, 0).set('#').display(cout);  
+    cout << "\n";
+    myScreen.display(cout);
+    cout << "\n";
+
     return 0;
 }

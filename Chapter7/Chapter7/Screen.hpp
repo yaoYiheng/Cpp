@@ -32,21 +32,39 @@ public:
     
     
 private:
-    pos cursor = 0;
-    pos height = 0, width = 0;
+    unsigned cursor = 0;
+    unsigned height = 0, width = 0;
     
     std::string contents;
     
+    //一个可变数据成员，永远不会是const，即使他是const对象的成员。因此一个const成员函数可以改变一个可变成员函数的值。
+    mutable size_t access_ctr;
     
 public:
-    //必须显示声明该构造函数因为该类中嗨哟其他构造函数
+    //必须显示声明该构造函数因为该类中含有其他构造函数
     Screen() = default;
-    Screen(pos ht, pos wd, char c):height(ht), width(wd), contents(ht * wd, c){}
+    Screen(unsigned ht, unsigned wd, char c):height(ht), width(wd), contents(ht * wd, c){}
     
     char get() const {return contents[cursor];} //隐式内联
-    inline char get(pos ht, pos wd) const;//显示内敛
+    inline char get(unsigned ht, unsigned wd) const;//显示内敛
     
-    Screen& move(pos r, pos c); //能在之后被设为内联
+    Screen& move(unsigned r, unsigned c); //能在之后被设为内联
+    
+    void some_member() const;
+    
+    Screen &set(char);
+    Screen &set(unsigned, unsigned, char);
+    
+    
+    const Screen& display(std::ostream &os) const {do_display(os); return *this;}
+    Screen& display(std:: ostream &os) {do_display(os); return *this;}
+    
+    Screen& display(){std::cout << contents; return *this;}
+    
+private:
+    //定义为私有成员，有它负责打印的实际工作，所有的display函数都会调用这个
+    void do_display(std::ostream &os) const {os << contents;}
+    
 };
 
 #endif /* Screen_hpp */

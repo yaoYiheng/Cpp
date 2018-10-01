@@ -8,16 +8,36 @@
 
 #include "Screen.hpp"
 
-inline Screen &Screen::move(Screen::pos r, Screen::pos c)
+Screen &Screen::move(unsigned r, unsigned c)
 {
-    pos row = r * width;
-    cursor = row + c;
+    
+    cursor = r * width + c;
     
     return *this;
 }
-char Screen::get(Screen::pos ht, Screen::pos wd) const
+char Screen::get(unsigned ht, unsigned wd) const
 {
     pos row = ht * width;
     
     return contents[row + ht];
 }
+
+void Screen:: some_member() const
+{
+    ++access_ctr;
+}
+
+Screen &Screen::set(char c)
+{
+    this->contents[cursor] = c;
+    
+    return *this;
+}
+
+Screen &Screen::set(unsigned row, unsigned col, char ch)
+{
+    contents[row * width + col] = ch;
+    
+    return *this;
+}
+
