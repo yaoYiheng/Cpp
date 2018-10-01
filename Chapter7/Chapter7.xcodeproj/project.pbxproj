@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		DB0732D22161BD99007D2838 /* Screen.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DB0732D02161BD99007D2838 /* Screen.cpp */; };
+		DB0732D5216211C8007D2838 /* WindowManger.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DB0732D3216211C8007D2838 /* WindowManger.cpp */; };
 		DB28E4152160D3C000A08921 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DB28E4142160D3C000A08921 /* main.cpp */; };
 		DB28E41D2160D3E600A08921 /* Person.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DB28E41B2160D3E600A08921 /* Person.cpp */; };
 /* End PBXBuildFile section */
@@ -27,6 +28,8 @@
 /* Begin PBXFileReference section */
 		DB0732D02161BD99007D2838 /* Screen.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Screen.cpp; sourceTree = "<group>"; };
 		DB0732D12161BD99007D2838 /* Screen.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Screen.hpp; sourceTree = "<group>"; };
+		DB0732D3216211C8007D2838 /* WindowManger.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = WindowManger.cpp; sourceTree = "<group>"; };
+		DB0732D4216211C8007D2838 /* WindowManger.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = WindowManger.hpp; sourceTree = "<group>"; };
 		DB28E4112160D3C000A08921 /* Chapter7 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Chapter7; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB28E4142160D3C000A08921 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		DB28E41B2160D3E600A08921 /* Person.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Person.cpp; sourceTree = "<group>"; };
@@ -66,6 +69,8 @@
 				DB28E4142160D3C000A08921 /* main.cpp */,
 				DB0732D02161BD99007D2838 /* Screen.cpp */,
 				DB0732D12161BD99007D2838 /* Screen.hpp */,
+				DB0732D3216211C8007D2838 /* WindowManger.cpp */,
+				DB0732D4216211C8007D2838 /* WindowManger.hpp */,
 				DB28E41B2160D3E600A08921 /* Person.cpp */,
 				DB28E41C2160D3E600A08921 /* Person.hpp */,
 			);
@@ -131,6 +136,7 @@
 				DB28E41D2160D3E600A08921 /* Person.cpp in Sources */,
 				DB28E4152160D3C000A08921 /* main.cpp in Sources */,
 				DB0732D22161BD99007D2838 /* Screen.cpp in Sources */,
+				DB0732D5216211C8007D2838 /* WindowManger.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

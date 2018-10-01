@@ -12,10 +12,13 @@
 #include <stdio.h>
 #include <iostream>
 
+
 class Screen
 {
+
 public:
-    
+
+    friend class WindowManger;
     /*
      string::size_type从本质上来说，是一个整型数
      

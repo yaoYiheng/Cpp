@@ -10,12 +10,24 @@
 #include "Person.hpp"
 #include "Screen.hpp"
 using namespace std;
+class Y;
+
+class X {
+private:
+    
+    Y *pointToY;
+};
+
+class Y {
+    X x;
+    
+};
 int main(int argc, const char * argv[]) {
     // insert code here...
     
 
     Screen myScreen(5, 5,'X');
-    myScreen.move(4, 0).set('#').display(cout);  
+    myScreen.move(4, 0).set('#').display(cout);
     cout << "\n";
     myScreen.display(cout);
     cout << "\n";
