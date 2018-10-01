@@ -14,11 +14,10 @@ int main(int argc, const char * argv[]) {
     // insert code here...
     
     
-    Person person;
-    cin >> person;
     
-    cout << person;
+    string s1(10, 'c');
     
+    cout << s1 << endl;
     
     return 0;
 }

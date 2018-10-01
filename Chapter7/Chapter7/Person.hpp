@@ -18,8 +18,14 @@ private:
     std::string address;
     
 public:
-    Person(){};
-    Person(std:: string name, std:: string add);
+//    Person(){};
+    //与上句作用相同。
+    Person() = default;
+//    Person(std:: string name, std:: string add);
+    //与上句作用相同。
+    Person(std::string  name, std:: string add): name(name), address(add){}
+    //
+    Person(std::istream &is){is>>*this;}
 
     friend std::istream & operator>>(std::istream &in, Person &);
     friend std::ostream& operator<<(std::ostream &os, const Person &);

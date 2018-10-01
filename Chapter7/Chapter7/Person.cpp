@@ -9,11 +9,11 @@
 #include "Person.hpp"
 
 
-Person::Person(std:: string name, std:: string add)
-{
-    this->name = name;
-    this->address = add;
-}
+//Person::Person(std:: string name, std:: string add)
+//{
+//    this->name = name;
+//    this->address = add;
+//}
 std::istream & operator>>(std::istream &in, Person &person)
 {
     in >> person.name >> person.address;
