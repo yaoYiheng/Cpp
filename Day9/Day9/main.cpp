@@ -22,9 +22,14 @@ public:
     
     Person(T age, T id);
     
-    friend std::ostream& operator<<(std::ostream &cout, const Person<T> &);
+//    template <typename sT>
+    template <class SclassT>
+    friend std::ostream& operator<<(std::ostream &cout, const Person<SclassT> &);
     
     void show();
+    
+    //普通友元函数
+    friend void printPerson(Person<T> &p);
 
 };
 
@@ -45,16 +50,25 @@ Person<T>::Person(T age, T id)
     this->mID = id;
 }
 
+
+template <class T>
+void Person<T>:: printPerson(Person<T> &p)
+{
+    cout << p.mAge << " " << p.mID << endl;
+}
+
+
+
 template <class T>
 void Person<T>::show()
 {
     std::cout << this->mAge << " " << this->mID << std::endl;
 }
 
-template <class T>
-std::ostream& operator<<(std::ostream &cout, const Person<T> &person)
+template <class SclassT>
+std::ostream& operator<<(std::ostream &os, const Person<SclassT> &person)
 {
-    cout << person.mAge << " " << person.mID << std::endl;
+    os << person.mAge << " " << person.mID << std::endl;
     
     return cout;
 }
@@ -64,8 +78,8 @@ int main(int argc, const char * argv[]) {
     // insert code here...
     
     Person<int> person(20, 10003);
-    
-    
+    cout << person;
+    printPerson(person);
     Person<double> person2(11.23, 220.5);
 
     Person<string> person3("hello", "world");
