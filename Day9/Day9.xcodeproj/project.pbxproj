@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		DB55A7302164CF8600529AF9 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DB55A72F2164CF8600529AF9 /* main.cpp */; };
+		DB80DFC321650F4C000B2557 /* Hero.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DB80DFC121650F4C000B2557 /* Hero.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,6 +26,8 @@
 /* Begin PBXFileReference section */
 		DB55A72C2164CF8600529AF9 /* Day9 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Day9; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB55A72F2164CF8600529AF9 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		DB80DFC121650F4C000B2557 /* Hero.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Hero.cpp; sourceTree = "<group>"; };
+		DB80DFC221650F4C000B2557 /* Hero.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Hero.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +61,8 @@
 			isa = PBXGroup;
 			children = (
 				DB55A72F2164CF8600529AF9 /* main.cpp */,
+				DB80DFC121650F4C000B2557 /* Hero.cpp */,
+				DB80DFC221650F4C000B2557 /* Hero.hpp */,
 			);
 			path = Day9;
 			sourceTree = "<group>";
@@ -119,6 +124,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DB55A7302164CF8600529AF9 /* main.cpp in Sources */,
+				DB80DFC321650F4C000B2557 /* Hero.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

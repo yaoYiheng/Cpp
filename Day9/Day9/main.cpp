@@ -7,6 +7,10 @@
 //
 
 #include <iostream>
+
+#include "Hero.cpp"
+
+
 using namespace std;
 
 
@@ -71,23 +75,51 @@ std::ostream& operator<<(std::ostream &os, const Person<SclassT> &person)
 {
     os << person.mAge << " " << person.mID << std::endl;
     
-    return cout;
+    return os;
 }
 
 
-int main(int argc, const char * argv[]) {
-    // insert code here...
-    
+void practise1()
+{
     Person<int> person(20, 10003);
     cout << person;
     printPerson(person);
     Person<double> person2(11.23, 220.5);
-
+    
     Person<string> person3("hello", "world");
     person3.show();
     person2.show();
     
     person.show();
+}
+
+
+
+/**
+ 类模版中含有static
+ */
+void practise2()
+{
+    Hero<string> s1, s2, s3;
+    
+    Hero<int> i1, i2, i3;
+    
+    s1.count = 10;
+    
+    i1.count = 200;
+    
+    
+    cout << s1.count <<" " << s2.count << " " << s3.count << endl;
+    
+    cout << i1.count <<" " << i2.count << " " << i3.count << endl;
+    
+}
+int main(int argc, const char * argv[]) {
+    // insert code here...
+//    practise1();
+    
+
+    practise2();
     
     return 0;
 }
