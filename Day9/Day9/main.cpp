@@ -29,7 +29,8 @@ public:
     void show();
     
     //普通友元函数
-    friend void printPerson(Person<T> &p);
+    template <class SclassT>
+    friend void printPerson(Person<SclassT> &p);
 
 };
 
@@ -51,8 +52,8 @@ Person<T>::Person(T age, T id)
 }
 
 
-template <class T>
-void Person<T>:: printPerson(Person<T> &p)
+template <class SclassT>
+void printPerson(Person<SclassT> &p)
 {
     cout << p.mAge << " " << p.mID << endl;
 }
