@@ -24,11 +24,17 @@ public:
     MyArray(int capacity);
     MyArray(const MyArray<T> &array); //拷贝构造函数
     
-    T& operator[](int index); //根据index返回在数组中对应对象的引用
+    ~MyArray();
+    //根据index返回在数组中对应对象的引用
+    T& operator[](int index);
+
     MyArray<T> operator=(const MyArray<T> &array);
     
     
     void pushBack(const T& data);
+    
+    //适用于当data为右值时调用
+    void pushBack(const T&& data);
     
     
 };
