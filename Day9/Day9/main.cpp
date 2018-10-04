@@ -9,6 +9,7 @@
 #include <iostream>
 
 #include "Hero.cpp"
+#include "MyArray.cpp"
 
 
 using namespace std;
@@ -114,12 +115,36 @@ void practise2()
     cout << i1.count <<" " << i2.count << " " << i3.count << endl;
     
 }
+
+void practise3()
+{
+    MyArray<int> myarray1(10);
+    
+
+    myarray1.pushBack(10);
+    int a = 0;
+    for (int i = 0; i < myarray1.mSize; ++i)
+    {
+
+        myarray1.pushBack(++a);
+    }
+
+    for (int i = 0; i < myarray1.mSize; ++i)
+    {
+        cout << myarray1[i] << " " ;
+    }
+    
+    cout << endl;
+    
+}
 int main(int argc, const char * argv[]) {
     // insert code here...
 //    practise1();
     
 
-    practise2();
+//    practise2();
+    
+    practise3();
     
     return 0;
 }
