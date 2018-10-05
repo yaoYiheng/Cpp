@@ -152,6 +152,61 @@ void practise4()
     
     
 }
+
+void practise5()
+{
+    
+}
+//定义了一个返回值为空，参数为空的函数类型，并将这种类型命名为Func。
+//如何使用？
+
+/*
+同一般变量一般：
+ int *a = &b;
+ Func *s = 具有相同类型的函数名。不需要加（）。
+ 然后就可以通过s调用那个函数。
+ 
+ 
+ */
+typedef void Func();
+void practise6()
+{
+    int a = 10;
+    
+    const int&b = a;
+
+    //const_cast：去除（）中变量的const
+    int &c = const_cast<int &>(b);
+    a = 20;
+    
+    cout << b <<endl;
+    
+    c = 100;
+    cout << b <<endl;
+    
+    int aa = 10;
+    
+    //此时的const修饰的是 *pa,即不能通过 *pa来更改值。
+    //但pa本身不是固定的，它还可以指向其他的地址
+    const int* pa = &aa;
+    
+    //与上面的情况正好相反。
+    //可以通过 *cpa修改其所指向的值。
+    //但无法修改cpa所指向的地址。
+    int * const cpa = &aa;
+    
+    
+    Func *s = practise4;
+    s();
+    
+    
+    int *pp3 = NULL;
+    
+    //为pp3变量添加const属性。
+    const int *pp4 = const_cast<const int *>(pp3);
+    
+    
+}
 int main(int argc, const char * argv[]) {
     // insert code here...
 //    practise1();
@@ -161,7 +216,9 @@ int main(int argc, const char * argv[]) {
     
 //    practise3();
     
-    practise4();
+//    practise4();
+    
+    practise6();
     
     return 0;
 }
