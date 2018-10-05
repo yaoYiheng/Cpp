@@ -137,6 +137,21 @@ void practise3()
     cout << endl;
     
 }
+
+/**
+ static_cast用于内置的数据类型
+ 以及具有继承关系的指针或引用
+ */
+void practise4()
+{
+    int a = 97;
+    
+    char b = static_cast<char>(a);
+    
+    cout << b << endl;
+    
+    
+}
 int main(int argc, const char * argv[]) {
     // insert code here...
 //    practise1();
@@ -144,7 +159,9 @@ int main(int argc, const char * argv[]) {
 
 //    practise2();
     
-    practise3();
+//    practise3();
+    
+    practise4();
     
     return 0;
 }
