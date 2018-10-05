@@ -208,6 +208,28 @@ void practise6()
     
     
 }
+
+class Anima{};
+
+class Building{};
+
+/**
+ reinterpret_cast：强制类型转换。
+ 无关的指针类型都可以进行转换
+ 也可以进行函数指针转换
+ */
+void practise7()
+{
+    
+    Anima *ani = NULL;
+    //强制将Anima类型转换成Building类型
+    Building *build = reinterpret_cast<Building *>(ani);
+    
+    Hero<int> *intHero = NULL;
+    
+    MyArray<int> *intArray = reinterpret_cast<MyArray<int> *>(intHero);
+    
+}
 int main(int argc, const char * argv[]) {
     // insert code here...
 //    practise1();
