@@ -230,6 +230,19 @@ void practise7()
     MyArray<int> *intArray = reinterpret_cast<MyArray<int> *>(intHero);
     
 }
+
+
+/**
+ 抛出异常
+throw()括号内的，可声明所抛出的异常的类型
+throw()内如果没有任何类型，则不能抛出任何异常，但xcode会有这样提示：
+ has a non-throwing exception specification but can still throw
+ 
+ */
+void practise8() throw()
+{
+    throw "expression";
+}
 int main(int argc, const char * argv[]) {
     // insert code here...
 //    practise1();
