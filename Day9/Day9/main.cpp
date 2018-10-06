@@ -10,7 +10,7 @@
 
 #include "Hero.cpp"
 #include "MyArray.cpp"
-
+#include <stdio.h>
 
 using namespace std;
 
@@ -243,6 +243,86 @@ void practise8() throw()
 {
     throw "expression";
 }
+
+
+
+class MyException
+{
+public:
+    char *error;
+    
+public:
+    MyException() = default;
+    MyException(char *err){
+        cout << "构造函数" <<endl;
+        this->error = new char[strlen(err) + 1];
+        strcpy(error, err);
+    };
+    ~MyException(){
+        
+        cout << "xi造函数" <<endl;
+        if (this->error != NULL)
+        {
+            delete [] this->error;
+            this->error = NULL;
+        }
+    };
+    //拷贝构造函数
+    MyException(const MyException &myExc)
+    {
+        cout << "拷贝构造函数" <<endl;
+        this->error = new char[strlen(myExc.error) + 1];
+        strcpy(this->error, myExc.error);
+    }
+    
+    void what()
+    {
+        cout << this->error;
+    }
+};
+
+int divided(int a, int b)
+{
+    try {
+        if (b == 0)
+        {
+            
+            throw MyException("除数为0\n");
+//            throw new MyException();
+        }
+    }
+    /*
+     //普通元素 MyException exc 值传递 异常对象catch处理完之后就析构
+       引用 MyException &exc 引用传递 并不会调用拷贝构造函数。异常对象在catch处理完之后就会析够
+     
+     
+     */
+    catch (MyException exc)
+    {
+        exc.what();
+        
+        int temp;
+        cout << "请输入非0除数：" <<endl;
+        while (cin >>temp)
+        {
+            if (temp == 0)
+            {
+                cout << "请输入非0除数：" <<endl;
+                continue;
+            }
+            else
+            {
+                break;
+            }
+        }
+        
+        
+        return a / temp;
+    }
+    
+    return a/b;
+}
+
 int main(int argc, const char * argv[]) {
     // insert code here...
 //    practise1();
@@ -254,7 +334,9 @@ int main(int argc, const char * argv[]) {
     
 //    practise4();
     
-    practise6();
+//    practise6();
+    
+    cout << divided(10, 0) << endl;
     
     return 0;
 }
