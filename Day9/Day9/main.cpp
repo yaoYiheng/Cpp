@@ -11,6 +11,7 @@
 #include "Hero.cpp"
 #include "MyArray.cpp"
 #include <stdio.h>
+#include <stdexcept>
 
 using namespace std;
 
@@ -323,6 +324,56 @@ int divided(int a, int b)
     return a/b;
 }
 
+class MyOutOfRange:public exception {
+public:
+    char *pError;
+    
+public:
+    
+    MyOutOfRange(char * error)
+    {
+        this->pError = new char[strlen(error) + 1];
+        strcpy(this->pError, error);
+    }
+    virtual ~MyOutOfRange()
+    {
+        if (this->pError != NULL)
+        {
+            delete [] this->pError;
+            this->pError = NULL;
+        }
+    }
+    
+    virtual const char * what()const _NOEXCEPT
+    {
+        return pError;
+    }
+    
+};
+
+class Human
+{
+public:
+    int mAge;
+    
+public:
+    
+    //构造函数
+    Human(){
+        this->mAge = 0;
+    }
+    Human(int age): mAge(age){};
+    void setAge(int age)
+    {
+        if (age < 0 || age > 120)
+        {
+            throw MyOutOfRange("年龄有误");
+        }
+        this->mAge = age;
+    }
+};
+
+
 int main(int argc, const char * argv[]) {
     // insert code here...
 //    practise1();
@@ -336,7 +387,17 @@ int main(int argc, const char * argv[]) {
     
 //    practise6();
     
-    cout << divided(10, 0) << endl;
+//    cout << divided(10, 0) << endl;
+    
+    Human h1;
+    
+    try
+    {
+        h1.setAge(-20);
+    } catch (MyOutOfRange &err)
+    {
+        cout << err.what() << endl;
+    }
     
     return 0;
 }
