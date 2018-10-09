@@ -147,7 +147,7 @@ void practise5()
         << setiosflags(ios::showbase) //表示符
         << setiosflags(ios::left)   //数字在左
         << setw(10)     //设置宽度
-        <<setfill('$')  //设置填充
+        << setfill('$')  //设置填充
     << num << endl;     //输出
     
 }
