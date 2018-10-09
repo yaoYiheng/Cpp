@@ -8,6 +8,7 @@
 
 #include <iostream>
 #include <iomanip>
+#include <fstream>
 using namespace std;
 
 
@@ -151,6 +152,49 @@ void practise5()
     << num << endl;     //输出
     
 }
+
+
+/**
+ 使用ifstream从文件中读取数据并写入到另一个文件当中
+ */
+void practist6()
+{
+    cout <<__func__<<endl;
+    string targetPath = "/Users/xxx/Documents/copy.txt";
+    string sourcePath = "/Users/xxx/Documents/ThirdPersonCharacterGuidelines.txt";
+    
+    //创建文件in流对象
+    //以只读方式打开文件
+    ifstream ifs(sourcePath, ios::in); //等价 ifstream ifs;ifs.open(sourcePath, ios::in);
+    
+    
+    
+    //同时也需要创建out流对象
+    ofstream ofs(targetPath, ios::out);
+    
+    //判断是否打开成功
+    if (!ifs)
+    {
+        cout << "打开文件失败" <<endl;
+    }
+    
+    char ch;
+    while (ifs.get(ch)) //从流文件中读取字符
+    {
+        cout << ch;
+        //将字符串写入到目标文件
+        ofs.put(ch);
+        
+    }
+    
+    //关闭文件
+    ifs.close();
+    
+    ofs.close();
+    
+    
+    
+}
 int main(int argc, const char * argv[]) {
     
     
@@ -159,6 +203,7 @@ int main(int argc, const char * argv[]) {
 //    practise2();
 //    practise3();
 
-    practise5();
+//    practise5();
+//    practist6();
     return 0;
 }
