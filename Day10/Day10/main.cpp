@@ -7,6 +7,7 @@
 //
 
 #include <iostream>
+#include <iomanip>
 using namespace std;
 
 
@@ -118,6 +119,38 @@ void practise4()
     }
 }
 
+/**
+ 格式化输出
+ */
+void practise5()
+{
+    
+    int num = 15;
+#if 0   //通过成员方法的方式完成格式化输出
+    
+    cout.width(4);  //长度为4位
+    cout.fill('%'); //多余位数以参数填充
+    cout.setf(ios::left);//默认先输出填充符，在输出数字，该为left后先输出数字
+    cout << num <<endl;
+    cout.unsetf(ios::dec); //卸载当前默认的10进制
+    cout.setf(ios::oct);//设置为8进制输出
+    cout.setf(ios::showbase);//加上8进制的关键字
+    cout << num <<endl;
+    
+    cout.unsetf(ios::oct);//卸载8进制
+    cout.setf(ios::hex);//设置为16进制
+    cout.setf(ios::showpoint);
+    cout << num <<endl;
+#endif
+    
+    cout << hex //16进制
+        << setiosflags(ios::showbase) //表示符
+        << setiosflags(ios::left)   //数字在左
+        << setw(10)     //设置宽度
+        <<setfill('$')  //设置填充
+    << num << endl;     //输出
+    
+}
 int main(int argc, const char * argv[]) {
     
     
@@ -125,9 +158,7 @@ int main(int argc, const char * argv[]) {
     
 //    practise2();
 //    practise3();
-    
-    char ch;
-    ch = cin.peek();
-    cout << ch <<endl;
+
+    practise5();
     return 0;
 }
