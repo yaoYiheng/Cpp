@@ -243,6 +243,30 @@ void pratcise7()
     
     
 }
+
+/**
+ 计算value在数组中出现的个数
+
+ @param begin 指向数组第一个元素的指针
+ @param end 指向数组最后一个元素的下一位的指针
+ @param value 待查的数
+ @return value在数组中出现的个数
+ */
+int myCount(int *begin, int *end, int value)
+{
+    int count = 0;
+    while (begin != end)
+    {
+        if (*begin == value)
+        {
+            count += 1;
+        }
+        begin++;
+    }
+    
+    return count;
+}
+
 int main(int argc, const char * argv[]) {
     
     
@@ -254,6 +278,17 @@ int main(int argc, const char * argv[]) {
 //    practise5();
 //    practist6();
     
-    pratcise7();
+//    pratcise7();
+    
+    int array[] = {0, 22, 33, 10, 0, 20, 22, 0};
+    
+    int *pBegin, *pEnd;
+    
+    pBegin = array;
+    
+    pEnd = &array[sizeof(array) / sizeof(int)];
+    
+    
+    cout << myCount(pBegin, pEnd,22) << endl;
     return 0;
 }
