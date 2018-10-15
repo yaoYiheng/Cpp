@@ -9,6 +9,10 @@
 #include <iostream>
 #include <iomanip>
 #include <fstream>
+
+#include <vector>
+#include <algorithm>
+
 using namespace std;
 
 
@@ -198,7 +202,7 @@ void practist6()
 
 class Person
 {
-private:
+public:
     int m_id;
     int m_age;
     
@@ -207,11 +211,29 @@ public:
     
     Person(int id, int age):m_id(id), m_age(age){};
     
-    void show()
+    friend void showPerson(Person &);
+    
+    friend void test(Person &);
+
+    void showPerson()
     {
-        cout << "id = " << m_id << " age = " << m_age << endl;
+        cout << "id = " <<m_id << " age = " << m_age << endl;
     }
+    
 };
+
+void showPerson(Person &person)
+{
+    cout << "id = " << person.m_id << " age = " << person.m_age << endl;
+}
+void test(Person &person)
+{
+    cout << "id = " << person.m_id << " age = " << person.m_age << endl;
+}
+//void Person::showPerson()
+//{
+//    cout << "id = " << m_id << " age = " << m_age << endl;
+//}
 
 
 /**
@@ -238,7 +260,7 @@ void pratcise7()
     
     ifs.read((char*)&p3, sizeof(Person));
     
-    p3.show();
+//    p3.showPerson();
     
     
     
@@ -267,6 +289,74 @@ int myCount(int *begin, int *end, int value)
     return count;
 }
 
+/**
+ 测试myCount
+ */
+void practise8()
+{
+    int array[] = {0, 22, 33, 10, 0, 20, 22, 0};
+    
+    int *pBegin, *pEnd;
+    
+    pBegin = array;
+    
+    pEnd = &array[sizeof(array) / sizeof(int)];
+    
+    
+    cout << myCount(pBegin, pEnd,22) << endl;
+}
+
+
+void show(int value)
+{
+    cout << value << " ";
+}
+
+/**
+ 容器
+ 算法
+ 迭代器
+ */
+void practise9()
+{
+    vector<int> intV;
+    
+    for (int i = 0; i < 5 ; ++i)
+    {
+        intV.push_back(10 * i);
+    }
+    
+    //
+    for_each(intV.begin(), intV.end(), show);
+    
+}
+
+void practise10()
+{
+    vector<Person> pVec;
+    Person p1(10, 20), p2(20, 30), p3(30, 40);
+    
+    pVec.push_back(p1);
+    pVec.push_back(p2);
+    pVec.push_back(p3);
+    
+    
+    //for range写法
+    for (auto &pv : pVec) {
+         pv.showPerson();
+    }
+    
+    
+    //正常for写法, 加入了迭代器
+    for (auto begin = pVec.begin(); begin != pVec.end(); ++begin)
+    {
+        begin->showPerson();
+    }
+    
+    //使用添加回调的迭代器
+    for_each(pVec.begin(), pVec.end(), test);
+    
+}
 int main(int argc, const char * argv[]) {
     
     
@@ -280,15 +370,9 @@ int main(int argc, const char * argv[]) {
     
 //    pratcise7();
     
-    int array[] = {0, 22, 33, 10, 0, 20, 22, 0};
+//    practise9();
     
-    int *pBegin, *pEnd;
-    
-    pBegin = array;
-    
-    pEnd = &array[sizeof(array) / sizeof(int)];
-    
-    
-    cout << myCount(pBegin, pEnd,22) << endl;
+    practise10();
+
     return 0;
 }
