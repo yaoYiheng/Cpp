@@ -195,6 +195,54 @@ void practist6()
     
     
 }
+
+class Person
+{
+private:
+    int m_id;
+    int m_age;
+    
+public:
+    Person() = default;
+    
+    Person(int id, int age):m_id(id), m_age(age){};
+    
+    void show()
+    {
+        cout << "id = " << m_id << " age = " << m_age << endl;
+    }
+};
+
+
+/**
+ 将自定义对象写入文件
+ */
+void pratcise7()
+{
+    Person p1(10, 20);
+    Person p2(20, 30);
+    string filePath =  "/Users/yiheng/Documents/copy1.txt";
+    
+//    创建out对象
+    ofstream ofs(filePath, ios:: binary);
+    
+    ofs.write((char*) &p1, sizeof(Person));
+    ofs.write((char*) &p2, sizeof(Person));
+    
+    ofs.close();
+    
+    
+    Person p3;
+    ifstream ifs;
+    ifs.open(filePath, ios:: in| ios::binary);
+    
+    ifs.read((char*)&p3, sizeof(Person));
+    
+    p3.show();
+    
+    
+    
+}
 int main(int argc, const char * argv[]) {
     
     
@@ -205,5 +253,7 @@ int main(int argc, const char * argv[]) {
 
 //    practise5();
 //    practist6();
+    
+    pratcise7();
     return 0;
 }
