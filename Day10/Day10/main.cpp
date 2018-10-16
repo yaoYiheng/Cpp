@@ -357,6 +357,62 @@ void practise10()
     for_each(pVec.begin(), pVec.end(), test);
     
 }
+
+
+/**
+ 容器嵌套容器
+ */
+void pratise11()
+{
+    vector<Person> pVec;
+    Person p1(10, 20), p2(20, 30), p3(30, 40);
+    
+    vector<Person> pVec1;
+    Person p11(10, 20), p22(20, 30), p33(30, 40);
+    
+    vector<Person> pVec2;
+    Person p111(10, 20), p222(20, 30), p333(30, 40);
+    
+    //嵌套容器
+    vector<vector<Person>> pPVec;
+    pPVec.push_back(pVec);
+    pPVec.push_back(pVec1);
+    pPVec.push_back(pVec2);
+    
+    cout << "开始"<< endl;
+    
+//    for (auto &pPVecbegin : pPVec)
+//    {
+//        for (auto &pVecBegin: pPVecbegin )
+//        {
+//            pVecBegin.showPerson();
+//        }
+//    }
+    
+    cout << pPVec.size() << endl;
+    
+//    for (auto begin = pPVec.begin(); begin != pPVec.end(); ++begin)
+//    {
+//        for (auto pbegin = (*begin).begin(); begin != (*begin).end(); ++pbegin)
+//        {
+//            pbegin->showPerson();
+//        }
+//    }
+    
+    for (int i = 0; i < pPVec.size(); ++i)
+    {
+        
+        auto pVecc = pPVec[i];
+        cout << pVecc[0].m_age;
+        
+        
+//        for (int j = 0; j < pPVec[i].size(); ++ j)
+//             {
+//                 pPVec[i][j].showPerson();
+//             }
+    }
+    
+}
 int main(int argc, const char * argv[]) {
     
     
@@ -372,7 +428,9 @@ int main(int argc, const char * argv[]) {
     
 //    practise9();
     
-    practise10();
+//    practise10();
+    
+    pratise11();
 
     return 0;
 }
