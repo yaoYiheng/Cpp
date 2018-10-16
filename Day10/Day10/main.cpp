@@ -362,9 +362,9 @@ void printPerson(vector<Person> &pVector)
 {
     cout << __func__<<endl;
     
-    for (auto begin = pVector.begin(); begin != pVector.end(); ++begin)
+    for (auto &pVecBegin: pVector )
     {
-        cout << &*begin;
+        pVecBegin.showPerson();
     }
 }
 /**
@@ -397,8 +397,12 @@ void pratise11()
     pPVec.push_back(pVec1);
     pPVec.push_back(pVec2);
     
-//    printPerson(pVec);
+    printPerson(pVec);
     
+    //交换元素
+    pVec.swap(pVec1);
+    
+    printPerson(pVec);
     cout << "开始"<< endl;
     
     for (auto &pPVecbegin : pPVec)
@@ -446,6 +450,71 @@ void practise12()
     
 }
 
+void printIntV(vector<int> &vint)
+{
+    for (auto &pVint: vint)
+    {
+        cout << pVint<<" ";
+    }
+    cout << endl;
+}
+void practise13()
+{
+    int array[] = {1, 22, 333,4444};
+    //使用数组初始化
+    
+    vector<int> intVec(array, array + sizeof(array) / sizeof(int));
+    
+    printIntV(intVec);
+}
+
+
+void practise14()
+{
+    int array[] = {1001, 22, 333,4444};
+    //使用数组初始化
+    
+    vector<int> intVec(array, array + sizeof(array) / sizeof(int));
+    
+    //返回容器中元素的个数
+    cout << "size()该容器的size = " <<intVec.size() << endl;
+    
+    //判断元素是否为空
+    intVec.empty()? cout <<"为空" << endl: cout <<"不为空" << endl;
+    
+    //resize(int num) 重新制定容器的长度为num, 若容器边长, 则以默认值填充新位置.
+    //如果容器变短, 则末尾超出容器长度的元素被删除
+    intVec.resize(5);
+    printIntV(intVec);
+    cout << "resize()前" <<endl;
+    intVec.resize(3);
+    printIntV(intVec);
+    
+    //resize(int num, elem), 超出的元素以elem填充
+    intVec.resize(5, 222);
+    printIntV(intVec);
+    
+    //capacity() 容量
+    cout <<"容量是: " <<intVec.capacity() << endl;
+    
+    //删除迭代器指向的元素
+    intVec.erase(intVec.begin() + 2);
+    printIntV(intVec);
+    
+    //erase(start, end) 删除迭代器从start到end之间的元素.
+    intVec.erase(intVec.begin() + 1, intVec.end() - 1);
+    printIntV(intVec);
+    
+    //
+    cout << "第一个元素是:" <<intVec.front() <<endl;
+    cout << "最后一个元素是:" <<intVec.back() <<endl;
+    //清除所有元素
+    intVec.clear();
+    printIntV(intVec);
+    
+    //当调用clear()之后的迭代器, 如果还是使用front()去访问迭代器元素, 会返回清除前的第一个位置的元素
+    cout << "第一个元素是:" <<intVec.front() <<endl;
+}
 int main(int argc, const char * argv[]) {
     
     
@@ -463,9 +532,13 @@ int main(int argc, const char * argv[]) {
     
 //    practise10();
     
-    pratise11();
+//    pratise11();
     
 //    practise12();
+    
+//    practise13();
+    
+    practise14();
 
     return 0;
 }
