@@ -515,6 +515,33 @@ void practise14()
     //当调用clear()之后的迭代器, 如果还是使用front()去访问迭代器元素, 会返回清除前的第一个位置的元素
     cout << "第一个元素是:" <<intVec.front() <<endl;
 }
+
+
+/**
+ 巧用swap释放内存空间
+ */
+void practise15()
+{
+    vector<int> vInt;
+    
+    for (int i = 0 ; i < 100000; ++i)
+    {
+        vInt.push_back(i);
+    }
+    cout << "swap前" << endl;
+    vInt.resize(10);
+    cout << "大小是: "<< vInt.size() << endl;
+    cout << "容积是: "<< vInt.capacity() << endl;
+    
+    
+    cout << "swap后" << endl;
+    
+    //使用vInt去初始化一个匿名对象, 并调用swap与vInt交换指针.
+    vector<int>(vInt).swap(vInt);
+    
+    cout << "大小是: "<< vInt.size() << endl;
+    cout << "容积是: "<< vInt.capacity() << endl;
+}
 int main(int argc, const char * argv[]) {
     
     
@@ -538,7 +565,9 @@ int main(int argc, const char * argv[]) {
     
 //    practise13();
     
-    practise14();
+//    practise14();
+    
+    practise15();
 
     return 0;
 }
