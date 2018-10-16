@@ -542,6 +542,30 @@ void practise15()
     cout << "大小是: "<< vInt.size() << endl;
     cout << "容积是: "<< vInt.capacity() << endl;
 }
+
+
+/**
+ reserve预留空间
+ 如果知道容器大概要存储的元素的个数, 那么可以使用reserve预留空间
+ */
+void practise16()
+{
+    vector<int> vInt;
+    
+    int num = 0;
+    int *address = NULL;
+    vInt.reserve(100000);
+    for (int i = 0 ; i < 100003; ++i)
+    {
+        vInt.push_back(i);
+        if (address != &(vInt[0])) {
+            address = &(vInt[0]);
+            num++;
+        }
+    }
+    
+    cout << num << endl;
+}
 int main(int argc, const char * argv[]) {
     
     
@@ -567,7 +591,9 @@ int main(int argc, const char * argv[]) {
     
 //    practise14();
     
-    practise15();
+//    practise15();
+    
+    practise16();
 
     return 0;
 }
