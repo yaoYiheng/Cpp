@@ -358,7 +358,15 @@ void practise10()
     
 }
 
-
+void printPerson(vector<Person> &pVector)
+{
+    cout << __func__<<endl;
+    
+    for (auto begin = pVector.begin(); begin != pVector.end(); ++begin)
+    {
+        cout << &*begin;
+    }
+}
 /**
  容器嵌套容器
  */
@@ -366,12 +374,22 @@ void pratise11()
 {
     vector<Person> pVec;
     Person p1(10, 20), p2(20, 30), p3(30, 40);
+    pVec.push_back(p1);
+    pVec.push_back(p2);
+    pVec.push_back(p3);
     
     vector<Person> pVec1;
-    Person p11(10, 20), p22(20, 30), p33(30, 40);
+    Person p11(101, 20), p22(202, 30), p33(302, 40);
+    pVec1.push_back(p11);
+    pVec1.push_back(p22);
+    pVec1.push_back(p33);
+    
     
     vector<Person> pVec2;
-    Person p111(10, 20), p222(20, 30), p333(30, 40);
+    Person p111(103, 20), p222(203, 30), p333(303, 40);
+    pVec2.push_back(p111);
+    pVec2.push_back(p222);
+    pVec2.push_back(p333);
     
     //嵌套容器
     vector<vector<Person>> pPVec;
@@ -379,40 +397,55 @@ void pratise11()
     pPVec.push_back(pVec1);
     pPVec.push_back(pVec2);
     
+//    printPerson(pVec);
+    
     cout << "开始"<< endl;
     
-//    for (auto &pPVecbegin : pPVec)
-//    {
-//        for (auto &pVecBegin: pPVecbegin )
-//        {
-//            pVecBegin.showPerson();
-//        }
-//    }
+    for (auto &pPVecbegin : pPVec)
+    {
+        for (auto &pVecBegin: pPVecbegin )
+        {
+            pVecBegin.showPerson();
+        }
+    }
     
     cout << pPVec.size() << endl;
     
-//    for (auto begin = pPVec.begin(); begin != pPVec.end(); ++begin)
-//    {
-//        for (auto pbegin = (*begin).begin(); begin != (*begin).end(); ++pbegin)
-//        {
-//            pbegin->showPerson();
-//        }
-//    }
+}
+
+void practise12()
+{
+    string s1 = "12341234";
+    string s2 = "QWERT";
     
-    for (int i = 0; i < pPVec.size(); ++i)
-    {
-        
-        auto pVecc = pPVec[i];
-        cout << pVecc[0].m_age;
-        
-        
-//        for (int j = 0; j < pPVec[i].size(); ++ j)
-//             {
-//                 pPVec[i][j].showPerson();
-//             }
-    }
+    //增
+    s1 += s2;
+    s1.append("keke");
+    //查找rfind最后一次出现的位置
+    cout << s1.rfind("1234") << endl;
+    cout << s1[s1.rfind("1234")] <<endl;
+    
+    
+//    插入
+    //s1.insert(index, s2) 将从index位置上的字符 插入s2
+    s1.insert(1, s2);
+    cout << "s1 = " <<s1 << endl;
+    
+    
+    string s3 = "abcdefg";
+    //字符串的删除
+    //erase(n)从[n]之后的字符都会被删除
+    //erase(m, n)//从[m, n)之间的区间的字符串都会被删除, 不包含第[n]上的
+    s3.erase(0, 2);
+    cout << s3 <<endl;
+    
+    //s.replace(m, n, s2)从s[m],到s[n]的字符串, 替换成为s2
+    s3.replace(1, 3, s2);
+    cout <<"替换后" << s3 <<endl;
+    
     
 }
+
 int main(int argc, const char * argv[]) {
     
     
@@ -431,6 +464,8 @@ int main(int argc, const char * argv[]) {
 //    practise10();
     
     pratise11();
+    
+//    practise12();
 
     return 0;
 }
