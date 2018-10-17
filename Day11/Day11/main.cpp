@@ -80,8 +80,22 @@ void practise3()
     
     cout <<"删除头一个后:"<<endl;
     d1.pop_front(); //删除容器的第一个数据
+    d1.pop_back();  //删除容器的最后一个数据
     printDeque(d1);
     
+    
+    //通过[]索引修改对应index的值. 也可以访问, 如果idx越界不抛出异常, 直接出错
+    d1[4] = 10000;
+    printDeque(d1);
+    
+    //返回索引所指的数据, 如果idx越界吗就会抛出out_of_range.
+    cout << "从0开始的第3个下标是: " << d1.at(3) << endl;
+    
+    
+    //返回第一个数据
+    cout << "第一个元素是:" <<d1.front() << endl;
+    //返回最后一个数据
+    cout << "最后一个元素是:" <<d1.back() << endl;
     
     
 }
