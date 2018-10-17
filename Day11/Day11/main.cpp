@@ -61,13 +61,39 @@ void practise2()
     
 }
 
+
+
+/**
+ deque双端插入和删除
+ */
+void practise3()
+{
+    deque<int> d1(10, 5);
+    
+    cout << "原始:" <<endl;
+    printDeque(d1);
+    
+    d1.push_front(100); // 在容器头部插入一个数据
+    d1.push_front(1001);
+    cout <<"头部插入后:"<<endl;
+    printDeque(d1);
+    
+    cout <<"删除头一个后:"<<endl;
+    d1.pop_front(); //删除容器的第一个数据
+    printDeque(d1);
+    
+    
+    
+}
 int main(int argc, const char * argv[]) {
     // insert code here...
     
     
 //    practise1();
     
-    practise2();
+//    practise2();
+    
+    practise3();
     
     return 0;
 }
