@@ -8,6 +8,7 @@
 
 #include <iostream>
 #include <deque>
+#include <vector>
 
 using namespace std;
 
@@ -99,6 +100,111 @@ void practise3()
     
     
 }
+
+class Player
+{
+public:
+    string m_name;
+    int m_score;
+    
+public:
+    Player() = default;
+    Player(string name, int score): m_name(name), m_score(score){};
+};
+
+void creatPlayer(vector<Player> &playerVec)
+{
+    string nameSeed = "ABCDE";
+    
+    Player temp;
+    
+    //通过nameSeed创建选手
+    for (int i = 0; i < nameSeed.size(); ++i)
+    {
+        temp.m_name = "选手";
+        temp.m_name += nameSeed[i];
+        
+        temp.m_score = 0;
+        
+        playerVec.push_back(temp);
+    }
+}
+
+bool myCompare(Player &p1, Player &p2)
+{
+    return p1.m_score > p2.m_score;
+}
+
+void printScore(int val)
+{
+    cout << val << " ";
+}
+void setScore(vector<Player> &playerVec)
+{
+
+    for (auto &player : playerVec)
+    {
+        
+        
+        //创建一个deque以保存所有的随机分数, 选择该容器的原因是因为他可以从两头进行删除数据
+        deque<int> scores;
+        for (int i = 0; i < 10 ; ++i)
+        {
+            //随机打分
+            int tempScore = rand() % 41 + 60;
+            
+            scores.push_back(tempScore);
+        }
+            //对随机的打分进行排序
+        sort(scores.begin(), scores.end());
+        
+        //掐头去尾
+        scores.pop_front();
+        scores.pop_back();
+        
+        int totalScore = 0;
+        
+        for (auto &score : scores)
+        {
+            totalScore += score;
+        }
+        
+            
+        player.m_score = totalScore / scores.size();
+        
+        cout <<player.m_name << "的得分为:" <<player.m_score << endl;
+        
+    }
+}
+
+void ranking(vector<Player> &platerVec)
+{
+    sort(platerVec.begin(), platerVec.end(), myCompare);
+}
+
+
+/**
+ 通过deque实现打分的案例
+ */
+void practise4()
+{
+    vector<Player> pList;
+    
+    creatPlayer(pList);
+    
+    setScore(pList);
+    
+    ranking(pList);
+    
+    
+    cout << "从高到低的排序为:" <<endl;
+    for (auto &player: pList)
+    {
+        
+        cout << player.m_name << ": " <<player.m_score << endl;
+    }
+    
+}
 int main(int argc, const char * argv[]) {
     // insert code here...
     
@@ -107,7 +213,8 @@ int main(int argc, const char * argv[]) {
     
 //    practise2();
     
-    practise3();
+//    practise3();
     
+
     return 0;
 }
