@@ -11,6 +11,8 @@
 #include <vector>
 #include <stack>
 
+#include <queue>
+
 using namespace std;
 
 
@@ -217,6 +219,8 @@ void practise4()
 
 /**
  stack
+ 
+ 栈 先进后出
  */
 void practise5()
 {
@@ -243,6 +247,103 @@ void practise5()
         //弹出最顶层元素.
         s1.pop();
     }
+    
+    
+}
+
+
+/**
+ 队列, 先进先出
+ */
+void practise6()
+{
+    queue<int> qInt;
+    for (int i = 0; i < 5 ; ++i)
+    {
+        qInt.push(10 * i);
+    }
+    
+    while (qInt.size() > 0)
+    {
+        cout << qInt.front() << " ";
+        qInt.pop();
+    }
+    
+    cout << endl;
+}
+
+
+void printStack(stack<int> &sInt)
+{
+    while (sInt.size() > 0)
+    {
+        cout << sInt.top() << " ";
+        sInt.pop();
+    }
+}
+
+/**
+ queue存放stack容器并输出
+ */
+void practise7()
+{
+    //初始化栈 跟队列
+    stack<int> sInt1, sInt2, sInt3, sInt4;
+    queue<stack<int>> qInts;
+    
+    //初始化可变数组
+    vector<stack<int>> vInts;
+    
+    //将int类型的栈 放到可变数组中
+    vInts.push_back(sInt1);
+    vInts.push_back(sInt2);
+    vInts.push_back(sInt3);
+    vInts.push_back(sInt4);
+    
+    
+    cout << vInts.size() << endl;
+    
+    //遍历可变数组的每一个元素
+    for (auto &sInt : vInts)
+    {
+        //为数组中的每一个元素 赋值
+        for (int i = 0; i < 5 ; ++i)
+        {
+            sInt.push(10 * i);
+        }
+        cout << sInt.size() << endl;
+        
+        //将符完值得stack<int>类型的元素, 添加到队列中
+        qInts.push(sInt);
+    }
+
+    
+    
+    //不清楚为什么在for循环外面push就没有值, 而当放到循环当中时, 则有值.
+//    qInts.push(sInt1);
+//    qInts.push(sInt2);
+//    qInts.push(sInt3);
+//    qInts.push(sInt4);
+    
+
+    cout << qInts.size() << endl;
+    
+    while (qInts.size() > 0)
+    {
+        //拿到队列中的第一个元素
+        auto temp = qInts.front();
+        
+        //输出该元素的内容
+        while (temp.size() > 0)
+        {
+            cout << temp.top() << " ";
+            temp.pop();
+        }
+        cout << endl;
+        
+        //从头部删除掉第一个元素
+        qInts.pop();
+    }
 }
 int main(int argc, const char * argv[]) {
     // insert code here...
@@ -254,7 +355,11 @@ int main(int argc, const char * argv[]) {
     
 //    practise3();
     
-    practise5();
+//    practise5();
+    
+//    practise6();
+    
+    practise7();
 
     return 0;
 }
