@@ -9,6 +9,7 @@
 #include <iostream>
 #include <deque>
 #include <vector>
+#include <stack>
 
 using namespace std;
 
@@ -110,7 +111,14 @@ public:
 public:
     Player() = default;
     Player(string name, int score): m_name(name), m_score(score){};
+    
+    friend void showInfo(Player *player);
 };
+
+void showInfo(Player *player)
+{
+    cout << "姓名: "<< player->m_name << ", 分数: " << player->m_score << endl;
+}
 
 void creatPlayer(vector<Player> &playerVec)
 {
@@ -205,6 +213,37 @@ void practise4()
     }
     
 }
+
+
+/**
+ stack
+ */
+void practise5()
+{
+    //stack初始化
+    stack<Player *> s1;
+    Player* p1, *p2, p3, p4;
+    p3.m_score = 60;
+    p3.m_name = "小强";
+    
+    p4.m_score = 77;
+    p4.m_name = "小黄";
+    
+    p1 = &p3;
+    p2 = &p4;
+    
+    //向栈中添加元素
+    s1.push(p1);
+    s1.push(p2);
+    
+    while (!s1.empty())
+    {
+        //返回最顶层元素
+        showInfo(s1.top());
+        //弹出最顶层元素.
+        s1.pop();
+    }
+}
 int main(int argc, const char * argv[]) {
     // insert code here...
     
@@ -215,6 +254,7 @@ int main(int argc, const char * argv[]) {
     
 //    practise3();
     
+    practise5();
 
     return 0;
 }
