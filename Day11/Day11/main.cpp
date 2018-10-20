@@ -10,7 +10,7 @@
 #include <deque>
 #include <vector>
 #include <stack>
-
+#include <list>
 #include <queue>
 
 using namespace std;
@@ -345,6 +345,62 @@ void practise7()
         qInts.pop();
     }
 }
+void printList(list<int> &list)
+{
+    for (auto &mL2 : list)
+    {
+        cout << mL2 <<" ";
+    }
+    
+    cout << endl;
+    
+}
+
+bool myCompare(int val1, int val2)
+{
+    return val1 > val2;
+}
+/**
+ list相关
+ */
+void practise8()
+{
+    list<int> mList1;//默认构造函数
+    list<int> mList2(10, 10); // 有参y构造函数
+    
+    list<int> mList3 = mList2; //拷贝构造函数
+    list<int> mList4(mList2.begin(), mList2.end());
+    
+    printList(mList4);
+    
+    
+    mList1 = {1, 2, 3, 4, 5};
+    
+    mList1.reverse();//反转链表
+    
+    printList(mList1);
+    
+    
+    for (int i = 0 ; i < 20 ; ++i)
+    {
+        mList1.push_back(rand() % 100);
+    }
+    
+    cout << "随机数据是:" <<endl;
+    printList(mList1);
+    
+    mList1.sort();//默认从小到大
+    cout << "排序后:" <<endl;
+    printList(mList1);
+    
+    mList1.reverse();
+    //sort算法支持可随机访问的容器
+//    sort(mList1.begin(), mList1.end(), myCompare);
+    
+    cout << "倒序:" <<endl;
+    printList(mList1);
+    
+}
 int main(int argc, const char * argv[]) {
     // insert code here...
     
@@ -359,7 +415,9 @@ int main(int argc, const char * argv[]) {
     
 //    practise6();
     
-    practise7();
+//    practise7();
+    
+    practise8();
 
     return 0;
 }
