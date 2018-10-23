@@ -463,6 +463,43 @@ void practise9()
 }
 
 
+class myCom {
+public:
+    bool operator()(int val1, int val2)
+    {
+        return val1 > val2;
+    }
+};
+void printSet(set<int, myCom> sets)
+{
+    for (auto &ref : sets)
+    {
+        cout << ref <<" ";
+    }
+    cout <<endl;
+}
+void practise11()
+{
+    set<int, myCom> s1;
+    
+    
+    
+    for (int i = 0; i < 8; ++i)
+    {
+        s1.insert(rand() % 1000);
+    }
+    
+    
+//    printSet(s1);
+    
+    for (auto begin = s1.begin(); begin != s1.end(); ++begin)
+    {
+        cout << (*begin) << "  ";
+    }
+    
+    cout << endl;
+}
+
 int main(int argc, const char * argv[]) {
     // insert code here...
     
@@ -481,7 +518,9 @@ int main(int argc, const char * argv[]) {
     
 //    practise8();
     
-    practise9();
+//    practise9();
+    
+    practise11();
 
     return 0;
 }
