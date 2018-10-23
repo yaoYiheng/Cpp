@@ -390,16 +390,20 @@ void practise8()
     cout << "随机数据是:" <<endl;
     printList(mList1);
     
-    mList1.sort();//默认从小到大
+    mList1.sort();//默认从小到大, list自己提供的sort方法.
     cout << "排序后:" <<endl;
     printList(mList1);
     
     mList1.reverse();
-    //sort算法支持可随机访问的容器
+    //sort缺点: 不支持随机访问, 因为非连续的内存空间, 所以说为了保持结点和结点之间的前驱后继关系,
+    //需要额外的空间开销.
+    
 //    sort(mList1.begin(), mList1.end(), myCompare);
     
     cout << "倒序:" <<endl;
     printList(mList1);
+    
+//    mList1.sort();
     
 }
 
