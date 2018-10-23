@@ -478,6 +478,10 @@ void printSet(set<int, myCom> sets)
     }
     cout <<endl;
 }
+
+/**
+ 对set进行反向排序
+ */
 void practise11()
 {
     set<int, myCom> s1;
@@ -500,6 +504,68 @@ void practise11()
     cout << endl;
 }
 
+
+class Person
+{
+public:
+    int m_age;
+    int m_id;
+    
+public:
+    Person() = default;
+    
+    Person(int age, int id): m_age(age), m_id(id){};
+    
+    bool operator()(Person &p1, Person &p2)
+    {
+        return p1.m_id > p2.m_id;
+    }
+};
+
+
+//伪函数, 
+class compare2
+{
+public:
+    bool operator()(Person p1, Person p2)
+    {
+        return p1.m_id > p2.m_id;
+    }
+};
+/**
+ 实现set<class>的排序
+ */
+void practise12()
+{
+    
+    Person p1(10, 1000), p2(11, 1001), p3(12, 1002), p4(13, 1003);
+    
+    set<Person, compare2> s1;
+    s1.insert(p1);
+    s1.insert(p2);
+    s1.insert(p3);
+    s1.insert(p4);
+    
+    Person p5(20, 1000);
+    
+    for (auto begin = s1.begin(); begin != s1.end(); ++begin)
+    {
+        cout << "年龄: " << (*begin).m_age << " ID: "<< (*begin).m_id << endl;
+    }
+    
+    auto per = s1.find(p5);
+    
+    if (per == s1.end())
+    {
+        cout << "不存在" <<endl;
+    }
+    else
+    {
+        cout << "找到了年龄: " << (*per).m_age << " ID: "<< (*per).m_id << endl;
+    }
+    
+}
+
 int main(int argc, const char * argv[]) {
     // insert code here...
     
@@ -520,7 +586,9 @@ int main(int argc, const char * argv[]) {
     
 //    practise9();
     
-    practise11();
+//    practise11();
+    
+    practise12();
 
     return 0;
 }
