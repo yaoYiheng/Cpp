@@ -13,6 +13,7 @@
 #include <list>
 #include <queue>
 
+#include <set>
 using namespace std;
 
 
@@ -401,6 +402,67 @@ void practise8()
     printList(mList1);
     
 }
+
+void printSet(set<int> &set)
+{
+    for (auto &ref : set)
+    {
+        cout << ref <<" ";
+    }
+    cout <<endl;
+}
+
+
+/**
+ set相关
+ 会对容器内的值自动进行排序. 默认从小到大.
+ 
+ 
+ */
+void practise9()
+{
+    set<int> s1; //会对容器内的值自动进行排序. 默认从小到大.
+    
+    for (int i = 0; i < 8; ++i)
+    {
+        s1.insert(rand() % 1000);
+    }
+    
+    printSet(s1);
+    
+    //删除
+    //传入一个位置. 刚刚试了下传入end()d,但报错, 是因为end()是s指向最后一个元素的下一位.
+    s1.erase(s1.begin());
+    
+    printSet(s1);
+    //查找加删除
+    //find(key), 查找键lkey是否存在, 若存在, 返回该键的元素的迭代器, 若不存在, 返回map.end()
+    auto value = s1.find(249);
+    
+    
+    if (value == s1.end())
+    {
+        cout << "没有找到!" << endl;
+    }
+    else
+    {
+        cout << *value << endl;
+    }
+    
+    //lower_bound(s1.beign(), s1.end(), keyElem)返回第一个 >= keyElem元素的迭代器
+    //upper_bound(s1.beign(), s1.end(), keyElem)返回第一个 > keyElem元素的迭代器
+    auto val = upper_bound(s1.begin(), s1.end(), 544);
+    
+    cout << "lower_bound的值为: " << *val << endl;
+    
+    //equal_range() 返回Lower_bound 和upper_bound的值
+    auto pair = s1.equal_range(249);
+    
+    cout << "pair.first = " << *(pair.first) << endl;
+    cout << "pair.second = " << *(pair.second) << endl;
+}
+
+
 int main(int argc, const char * argv[]) {
     // insert code here...
     
@@ -417,7 +479,9 @@ int main(int argc, const char * argv[]) {
     
 //    practise7();
     
-    practise8();
+//    practise8();
+    
+    practise9();
 
     return 0;
 }
