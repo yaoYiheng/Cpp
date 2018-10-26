@@ -8,9 +8,15 @@
 
 #include <iostream>
 #include <map>
+#include <vector>
 
 using namespace std;
 
+
+#define SALE_DEPARTMENT 1
+#define DEVELOP_DEPARTMENT 2
+#define FINACIAL_DEPARTMENT 3
+#define ALL_DEPARTMENT 4
 
 void printMap(map<string, int> &myMap)
 {
@@ -71,11 +77,151 @@ void practise1()
     printMap(myMap);
 }
 
+
+/*
+ mutimap案例
+    公司找了5个员工, 需要指派员工在哪个部门工作
+ 人员信息有: 姓名, 年龄, 电话, 工资等
+ 通过mutimap进行信息的插入 保存 显示
+ 分部门显示员工信息, 显示全部员工信息
+
+ */
+
+class Employee
+{
+public:
+    Employee() = default;
+    Employee(string name, int age, string phone, int salary):mName(name), mAge(age), mPhone(phone), mSalary(salary){};
+public:
+    string mName;
+    int mAge;
+    string mPhone;
+    int mSalary;
+};
+
+void printEmployee(vector<Employee>& vectEmp)
+{
+    
+    for (auto &emp : vectEmp)
+    {
+        cout << "姓名:" << emp.mName
+        << " 年龄:" << emp.mAge
+        << " 电话:" << emp.mPhone
+        << " 薪水:" << emp.mSalary <<endl;
+    }
+
+}
+//创建员工
+void CreateEmployee(vector<Employee>& vectEmp)
+{
+    string nameSeed = "员工";
+    
+    for (int i = 0; i < 10; ++i)
+    {
+        string name = nameSeed + to_string(i + 1);
+        int age = 20 + rand() % 15;
+        string phone = to_string(176) + to_string(rand() % 10000000);
+        int salary = 4000 + rand() % 1000;
+        
+        Employee temp(name, age, phone, salary);
+        
+        vectEmp.push_back(temp);
+    }
+    
+//    printEmployee(vectEmp);
+}
+
+//对员工进行分组, 因为可能会出现同一部门内有多个员工,
+//对应的就是multumap允许多个key存在于一个multumap中
+void EmployeeGroup(vector<Employee>&vectEmp,multimap<int, Employee>& employeeGroup)
+{
+    //将vectEmp中的元素随机分配到employeeGroup中
+    for (auto emp : vectEmp)
+    {
+        int department = rand() % 3 + 1;
+        
+        switch (department) {
+            case SALE_DEPARTMENT:
+                employeeGroup.insert(make_pair(SALE_DEPARTMENT, emp));
+                break;
+            case DEVELOP_DEPARTMENT:
+                employeeGroup.insert(make_pair(DEVELOP_DEPARTMENT, emp));
+                break;
+            case FINACIAL_DEPARTMENT:
+                employeeGroup.insert(make_pair(FINACIAL_DEPARTMENT, emp));
+                break;
+                
+            default:
+                break;
+        }
+    }
+    
+    
+}
+
+void showEmployee(multimap<int, Employee>& employeeGroup, int departmentID)
+{
+    //先通过key找到迭代器
+    auto iter = employeeGroup.find(departmentID);
+    
+    auto numOfEmployee = employeeGroup.count(departmentID);
+    
+    int num = 0;
+    //需要对迭代器添加添加一个控制, 因为如果只是单纯的迭代器++, 会一直向后查找, 但是只需要
+    //查找到对应的key的元素们的个数就可以了.所以需要多一个num来控制for循环.
+    for (auto pos = iter; pos != employeeGroup.end() && num < numOfEmployee; ++pos, ++num)
+    {
+        cout << "姓名:" << pos->second.mName
+        << " 年龄:" << pos->second.mAge
+        << " 电话:" << pos->second.mPhone
+        << " 薪水:" << pos->second.mSalary <<endl;
+    }
+}
+//对multimap进行输出
+void printGroup(multimap<int, Employee>& employeeGroup)
+{
+    cout << "财务部门员工:" <<endl;
+    
+    showEmployee(employeeGroup, FINACIAL_DEPARTMENT);
+    
+    cout << "开发部门员工:" <<endl;
+    
+    showEmployee(employeeGroup, DEVELOP_DEPARTMENT);
+    
+    cout << "销售部门员工:" <<endl;
+    
+    showEmployee(employeeGroup, SALE_DEPARTMENT);
+}
+
+
+
+void practise2()
+{
+    
+    //创建i一个用于放置新员工的vector
+    vector<Employee> vectEmp;
+    
+    // 通过mutimap进行信息的插入 保存 显示
+    multimap<int, Employee> employeeGroup;
+    
+    
+    //创建员工
+    CreateEmployee(vectEmp);
+    
+    //对员工进行分组, 因为可能会出现同一部门内有多个员工,
+    //对应的就是multumap允许多个key存在于一个multumap中
+    EmployeeGroup(vectEmp, employeeGroup);
+    
+    //对multimap进行输出
+    printGroup(employeeGroup);
+}
 int main(int argc, const char * argv[]) {
     // insert code here...
     
     
-    practise1();
+//    practise1();
+
+    practise2();
     
     return 0;
 }
