@@ -194,7 +194,6 @@ void printGroup(multimap<int, Employee>& employeeGroup)
 }
 
 
-
 void practise2()
 {
     
@@ -215,13 +214,69 @@ void practise2()
     //对multimap进行输出
     printGroup(employeeGroup);
 }
+
+
+class Person {
+public:
+    char * mName;
+    int mAge;
+    
+public:
+    Person() = default;
+    Person(char *name, int age)
+    {
+        this->mName = new char[strlen(name) + 1];
+        strcpy(this->mName, name);
+        this->mAge = age;
+    }
+    Person(const Person &person)
+    {
+        this->mName = new char[strlen(person.mName) + 1];
+        strcpy(this->mName, person.mName);
+        this->mAge = person.mAge;
+    }
+    Person& operator=(const Person &person)
+    {
+        if (this->mName != NULL)
+        {
+            delete [] this->mName;
+            this->mName = NULL;
+        }
+        
+        this->mName = new char[strlen(person.mName) + 1];
+        strcpy(this->mName, person.mName);
+        this->mAge = person.mAge;
+        
+        return *this;
+    }
+    ~Person()
+    {
+        if (this->mName != NULL)
+        {
+            delete [] this->mName;
+            this->mName = NULL;
+        }
+    }
+};
+
+void practise3()
+{
+    vector<Person> vectP;
+    
+    Person p1("Moriat", 100), p2("Kim", 200);
+    
+    vectP.push_back(p1);
+    vectP.push_back(p2);
+}
 int main(int argc, const char * argv[]) {
     // insert code here...
     
     
 //    practise1();
 
-    practise2();
+//    practise2();
+    
+    practise3();
     
     return 0;
 }
