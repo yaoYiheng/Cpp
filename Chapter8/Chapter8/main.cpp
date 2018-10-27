@@ -8,6 +8,7 @@
 
 #include <iostream>
 #include <vector>
+#include <fstream>
 using namespace std;
 
 
@@ -50,6 +51,66 @@ istream& practise8_1(istream& in)
 void practise8_4()
 {
     ifstream ifs;
+    ifs.open("/Users/yiheng/Documents/copy.txt", ios::in);
+    
+    if (!ifs)
+    {
+        cerr << "无法打开文件" <<endl;
+    }
+    
+    string line;
+    vector<string> words;
+    while (getline(ifs, line))
+    {
+        words.push_back(line);
+    }
+    
+    //关闭文件
+    ifs.close();
+    
+    //输出vector
+    vector<string>::iterator begin = words.begin();
+    while (begin != words.end())
+    {
+        cout << *begin <<endl;
+        ++begin;
+    }
+    
+}
+
+/**
+重写上面的程序, 将每个单词作为一个独立的元素进行存储
+ 
+ 思路:
+ 将while (getline(ifs, line)) 改为 while (ifs >> line)即可.
+ */
+void practise8_5()
+{
+    ifstream ifs;
+    ifs.open("/Users/yiheng/Documents/copy.txt", ios::in);
+    
+    if (!ifs)
+    {
+        cerr << "无法打开文件" <<endl;
+    }
+    
+    string line;
+    vector<string> words;
+    while (ifs >> line)
+    {
+        words.push_back(line);
+    }
+    
+    //关闭文件
+    ifs.close();
+    
+    //输出vector
+    vector<string>::iterator begin = words.begin();
+    while (begin != words.end())
+    {
+        cout << *begin <<endl;
+        ++begin;
+    }
     
 }
 int main(int argc, const char * argv[]) {
@@ -57,5 +118,9 @@ int main(int argc, const char * argv[]) {
     std::cout << "Hello, World!\n";
     
 //    practise8_1(cin);
+    
+//    practise8_4();
+    
+    practise8_5();
     return 0;
 }
