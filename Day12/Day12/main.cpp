@@ -9,7 +9,9 @@
 #include <iostream>
 #include <map>
 #include <vector>
+#include <functional>
 
+#include <algorithm>
 using namespace std;
 
 
@@ -268,6 +270,86 @@ void practise3()
     vectP.push_back(p1);
     vectP.push_back(p2);
 }
+struct MyPrint: public binary_function<int, int, void>
+{
+    void operator()(int val, int add) const
+    {
+        cout << "val = " << val <<", Add = " << add << endl;
+        cout << val + add << " " << endl;
+    }
+};
+
+
+/**
+ 仿函数适配器 bind1st bind2nd 绑定适配器
+ */
+void practise4()
+{
+    vector<int> vInt;
+    for (int i = 0; i < 10; ++i)
+    {
+        vInt.push_back(i);
+    }
+    
+    
+    int num = 111;
+    
+    
+    for_each(vInt.begin(), vInt.end(), bind1st(MyPrint(), num));
+    /*
+     val = 111, Add = 0
+     111
+     val = 111, Add = 1
+     112
+     val = 111, Add = 2
+     113
+     val = 111, Add = 3
+     114
+     val = 111, Add = 4
+     115
+     val = 111, Add = 5
+     116
+     val = 111, Add = 6
+     117
+     val = 111, Add = 7
+     118
+     val = 111, Add = 8
+     119
+     val = 111, Add = 9
+     120
+     
+     */
+    
+//    for_each(vInt.begin(), vInt.end(), bind2nd(MyPrint(), num));
+    //绑定适配器, 将一个二元函数对象转变成一个一元函数对象
+    
+    /*
+     val = 0, Add = 111
+     111
+     val = 1, Add = 111
+     112
+     val = 2, Add = 111
+     113
+     val = 3, Add = 111
+     114
+     val = 4, Add = 111
+     115
+     val = 5, Add = 111
+     116
+     val = 6, Add = 111
+     117
+     val = 7, Add = 111
+     118
+     val = 8, Add = 111
+     119
+     val = 9, Add = 111
+     120
+     
+     */
+    
+    cout << endl;
+    
+}
 int main(int argc, const char * argv[]) {
     // insert code here...
     
@@ -276,7 +358,9 @@ int main(int argc, const char * argv[]) {
 
 //    practise2();
     
-    practise3();
+//    practise3();
+    
+    practise4();
     
     return 0;
 }
