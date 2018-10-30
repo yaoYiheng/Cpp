@@ -418,6 +418,30 @@ void practise5()
 
 }
 
+void printInt(int val, int val2)
+{
+    cout << "val = "<< val + val2 << " , val2 = "<< val2 << endl;
+    cout << val2 + 10 << endl;
+}
+
+/**
+ ptr_func 函数对象适配器
+ 就是把普通函数转换成 函数对象
+ */
+void practise6()
+{
+    vector<int> vInt;
+    
+    for (int i = 0; i < 10; ++i)
+    {
+        vInt.push_back(rand() % 200);
+    }
+    
+    sort(vInt.begin(), vInt.end());
+    
+    //将普通函数转化成函数对象之后, 就可以使用 not1, not2, bind2nd, bind1st,等适配器了
+    for_each(vInt.begin(), vInt.end(), bind2nd(ptr_fun(printInt), 20));
+}
 
 int main(int argc, const char * argv[]) {
     // insert code here...
@@ -430,7 +454,9 @@ int main(int argc, const char * argv[]) {
 //    practise3();
     
 //    practise4();
-    practise5();
+//    practise5();
+    
+    practise6();
     
     return 0;
 }
