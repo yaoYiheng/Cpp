@@ -350,6 +350,75 @@ void practise4()
     cout << endl;
     
 }
+
+
+void printVec(vector<int> &vint)
+{
+    for (auto &it : vint)
+    {
+        cout << it << " ";
+    }
+    
+    cout << endl;
+}
+
+struct MyCompare: public binary_function<int, int, bool>
+{
+    bool operator()(int val1, int val2) const
+    {
+        return val1 > val2;
+    }
+};
+
+struct GreatThan: public unary_function<int, bool>
+{
+    bool operator()(int val) const
+    {
+        return val > -1116;
+    }
+};
+/**
+ 仿函数适配器 not1 not2 取反适配器
+ */
+void practise5()
+{
+    vector<int> vInt;
+    
+    for (int i = 0; i < 10; ++i)
+    {
+        vInt.push_back(rand() % 200);
+    }
+    
+    printVec(vInt);
+    
+    //使用not2对二元谓词取反.
+    sort(vInt.begin(), vInt.end(), not2(MyCompare()));
+    
+    printVec(vInt);
+    
+    sort(vInt.begin(), vInt.end(), MyCompare());
+    
+    printVec(vInt);
+    
+    
+    //对一元谓词取反, 使用not1
+    //返回第一个符合第三个参数的迭代器
+    auto it = find_if(vInt.begin(), vInt.end(), not1(GreatThan()));
+    
+    if (it == vInt.end())
+    {
+        cout << "没有找到" << endl;
+    }
+    else
+    {
+        cout << *it << endl;
+    }
+    
+    
+
+}
+
+
 int main(int argc, const char * argv[]) {
     // insert code here...
     
@@ -360,7 +429,8 @@ int main(int argc, const char * argv[]) {
     
 //    practise3();
     
-    practise4();
+//    practise4();
+    practise5();
     
     return 0;
 }
