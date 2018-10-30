@@ -458,6 +458,18 @@ public:
     {
         cout << "s年龄: "<< mAge << ", ID: " << mID <<endl;
     }
+    
+    friend ostream& operator<<(ostream &os, const Human &human)
+    {
+        os << human.mAge<<human.mID << endl;
+        
+        return os;
+    }
+    
+    bool operator==(const Human &human) 
+    {
+        return this->mID == human.mID && this->mAge == human.mAge;
+    }
 };
 
 
@@ -494,6 +506,30 @@ void practise7()
     for_each(pHVec.begin(), pHVec.end(), mem_fun(&Human::show));
 }
 
+
+void practise8()
+{
+    Human hi(10, 20), h2(20, 30), h3(30, 40), h4(10, 300);
+    
+    vector<Human> hVint;
+    
+    hVint.push_back(hi);
+    hVint.push_back(h2);
+    hVint.push_back(h3);
+    
+//    for_each(hVint.begin(), hVint.end(), mem_fun_ref(&Human::show));
+    vector<Human>::iterator it = find(hVint.begin(), hVint.end(), h4);
+    
+    if (it == hVint.end())
+    {
+        cout << "没有找到" <<endl;
+    }
+    else
+    {
+        cout << *it << endl;
+    }
+    
+}
 int main(int argc, const char * argv[]) {
     // insert code here...
     
@@ -509,7 +545,9 @@ int main(int argc, const char * argv[]) {
     
 //    practise6();
     
-    practise7();
+//    practise7();
+    
+    practise8();
     
     return 0;
 }
