@@ -443,6 +443,57 @@ void practise6()
     for_each(vInt.begin(), vInt.end(), bind2nd(ptr_fun(printInt), 20));
 }
 
+
+class Human
+{
+public:
+    int mAge;
+    int mID;
+    
+public:
+    Human() = default;
+    Human(int age, int id):mAge(age), mID(id){}
+    
+    void show()
+    {
+        cout << "s年龄: "<< mAge << ", ID: " << mID <<endl;
+    }
+};
+
+
+/**
+ 
+ 成员函数适配器
+ mem_fun_ref与mem_fun
+ 
+ 如果想要通过for_each调用类的成员方法需要使用
+ mem_fun_ref与mem_fun
+ mem_fun_ref: 针对的是类对象
+ mem_fun: 针对的是类对象的指针
+ */
+void practise7()
+{
+    Human hi(10, 20), h2(20, 30), h3(30, 40);
+    
+    vector<Human> hVint;
+    
+    hVint.push_back(hi);
+    hVint.push_back(h2);
+    hVint.push_back(h3);
+    
+    for_each(hVint.begin(), hVint.end(), mem_fun_ref(&Human::show));
+    
+    
+    cout << "------------"<<endl;
+    
+    vector<Human*> pHVec;
+    pHVec.push_back(&hi);
+    pHVec.push_back(&h2);
+    pHVec.push_back(&h3);
+    
+    for_each(pHVec.begin(), pHVec.end(), mem_fun(&Human::show));
+}
+
 int main(int argc, const char * argv[]) {
     // insert code here...
     
@@ -456,7 +507,9 @@ int main(int argc, const char * argv[]) {
 //    practise4();
 //    practise5();
     
-    practise6();
+//    practise6();
+    
+    practise7();
     
     return 0;
 }
