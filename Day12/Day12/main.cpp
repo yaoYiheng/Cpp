@@ -590,6 +590,41 @@ void pratise9()
     cout << "大于5的元素出现了" << num << "次"<<endl;
     
 }
+
+
+
+struct MyTransform
+{
+    int operator()(int val)
+    {
+        return val + 100;
+    }
+};
+/**
+ 遍历算法transform
+将一个容器A里的值, 以transform的最后一个参数所定义的方法, 搬运到y另一个容器之中
+ */
+void practise10()
+{
+    vector<int> vInt1, vInt2;
+    
+    for (int i = 0; i < 10; ++i)
+    {
+        if (i == 2) {
+            vInt1.push_back(2);
+        }
+        vInt1.push_back(i);
+    }
+    
+    vInt2.resize(vInt1.size());
+    
+    transform(vInt1.begin(), vInt1.end(), vInt2.begin(), MyTransform());
+    
+    printVec(vInt2);
+    
+    
+    
+}
 int main(int argc, const char * argv[]) {
     // insert code here...
     
@@ -608,7 +643,9 @@ int main(int argc, const char * argv[]) {
 //    practise7();
     
 //    practise8();
-    pratise9();
+//    pratise9();
+    
+    practise10();
     
     return 0;
 }
