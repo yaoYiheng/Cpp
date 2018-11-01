@@ -530,6 +530,66 @@ void practise8()
     }
     
 }
+
+
+bool mySearch(int val)
+{
+    return val > 5;
+}
+/**
+ 算法 adjacent_find()
+ 找到相邻的元素, 返回其迭代器.
+ 
+ 算法find_if(begin, end, 自定义的条件)
+ 找到符合条件的元素.并返回迭代器
+ 
+ count
+ //返回容器中指定元素的个数
+ count_if
+ //查找符合第三个参数条件的个数
+ */
+void pratise9()
+{
+    vector<int> vInt;
+    
+    for (int i = 0; i < 10; ++i)
+    {
+        if (i == 2) {
+            vInt.push_back(2);
+        }
+        vInt.push_back(i);
+    }
+    
+    
+    
+    printVec(vInt);
+    
+    auto it = adjacent_find(vInt.begin(), vInt.end());
+    
+    cout << *it << endl;
+    
+    
+    it = find_if(vInt.begin(), vInt.end(), mySearch);
+    if (it != vInt.end())
+    {
+        cout << "找到符合条件的元素" << *it << endl;
+    }
+    else
+    {
+        cout << "k没有找到" << endl;
+    }
+    
+    
+    //返回c容器中指定元素的个数
+   auto num = count(vInt.begin(), vInt.end(), 2);
+    
+    cout << "2出现了" << num << "次" << endl;
+    
+    //查找符合第三个参数条件的个数
+    num  = count_if(vInt.begin(), vInt.end(), mySearch);
+    cout << "大于5的元素出现了" << num << "次"<<endl;
+    
+}
 int main(int argc, const char * argv[]) {
     // insert code here...
     
@@ -547,7 +607,8 @@ int main(int argc, const char * argv[]) {
     
 //    practise7();
     
-    practise8();
+//    practise8();
+    pratise9();
     
     return 0;
 }
