@@ -10,7 +10,7 @@
 #include <vector>
 #include <algorithm>
 #include <list>
-
+#include <numeric>
 using namespace std;
 
 
@@ -193,6 +193,37 @@ void practise4()
     
     
 }
+
+/**
+ accumulate 算法, 在<numeric>头文件中
+ 计算容器元素累计总和
+ 第三个参数, 是写多少, 就会在最后的结果上加多少
+ */
+void practise5()
+{
+    vector<int> vInt;
+    for (int i = 0; i < 10 ; ++i)
+    {
+        vInt.push_back(i);
+    }
+    
+    cout << accumulate(vInt.begin(), vInt.end(), 2) <<endl;
+}
+
+
+/**
+ fill算法, 向容器中添加指定的值
+ */
+void practise6()
+{
+    vector<int> vInt;
+    vInt.resize(10);
+    
+    
+    fill(vInt.begin(), vInt.end(), 11);
+    printVec(vInt);
+    
+}
 int main(int argc, const char * argv[]) {
     // insert code here...
     
@@ -203,7 +234,11 @@ int main(int argc, const char * argv[]) {
     
 //    practise3();
     
-    practise4();
+//    practise4();
+    
+//    practise5();
+    
+    practise6();
     
     
     return 0;
